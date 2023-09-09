@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 609dc6b095c05d04181937a3c48f637e, type: 3}
+  m_Name: 11 Robot hands
+  m_EditorClassIdentifier: 
+  _name: Robot hands
+  description: Replace your hands with robotic ones. They are crazy fast but require
+    oiling from time to time.
+  image: {fileID: 21300010, guid: 122c99a52fc35454d867c7acf28c623e, type: 3}
+  targetType: 0
+  incomeTarget: 
+  countForPossibleBuy: 0
+  increaseRatio: 17
+  price:
+    s_digits: 70
+    s_exponent: 15
+  cheatOnly: 0

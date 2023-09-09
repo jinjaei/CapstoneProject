@@ -1,0 +1,17 @@
+Editing this file can result in a corrupted save or unexpected behaviour, proceed with caution.
+It will also mark your game as cheated forever.
+{
+    "creationTime": "06/15/2023 19:20:37",
+    "score": {
+        "s_digits": "0",
+        "s_exponent": -16
+    },
+    "money": {
+        "s_digits": "0",
+        "s_exponent": -16
+    },
+    "upgrades": [],
+    "incomes": [],
+    "saveTime": "06/15/2023 19:21:54"
+}
+CheatKey: PhmiYx9XOJgljTgyJaug7Li4aH1WLv1+6wj9eFLeTMQ=

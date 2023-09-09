@@ -1,0 +1,92 @@
+### First time unity user
+
+How do you move the camera in unity?
+
+### keyboard_bug
+
+help_my_spacebar_doesnt_work_anymore
+how_do_I_fix_it_plz
+
+### Error in unity
+
+Hi! I'm getting a "NullReferenceException: Object reference not set to an instance of an object" message in unity.
+I juste have a few simple questions, what is an Object? What is a reference? What is an instance?
+Thanks!
+
+### Doctissimo
+
+I have a strange rash on my right butt cheek, should I consult my magnetizer?
+
+Oh nevermind wrong website.
+
+### Terminal?
+
+How do I open a terminal?
+Should I ask my cancerous grandpa? Go to an airport?
+
+### God = Object ?
+
+If every piece of information can be written as 1 and 0,
+and that God is the primordial being that is both everything and everyone,
+then God is a System.Object right?
+
+### Choices
+
+GameObjects or DOTS?
+Legacy or new input?
+Built-in, HDRP or URP?
+Unet or MLAPI?
+Unity UI or UI Elements?
+
+Can I make a blank vote?
+
+### Difference between Update & FixedUpdate ?
+
+What is the difference between the Update and FixedUpdate methods, and when should these methods be used?
+
+### Awake() and Start()
+
+I see that we can initialize Variable in Awake() or Start() and Awake() will be called before Start().
+
+When should I use Awake and when should I use Start?
+
+### Unity singleton manager classes
+
+In Unity, whats a good way to create a singleton game manager that can be accessed everywhere as a global class with static variables that will spit the same constant values to every class that pulls those values? 
+And what would be the way to implement it in Unity? 
+Do I have to attach it to a GameObject?
+
+### Why should I use SerializeField?
+
+I have just started to learn C# and Unity, and there is one thing that I can not get used to:
+Why and when should I use [SerializeField]?
+
+Is it bad to leave variables hard coded despite using [SerializeField] and have more text boxes in my unity interface?
+
+Thank you in advance for your attention and your patience.
+
+### How can I pass values from one script to another?
+
+In Unity, I want one object to have a falling speed variable that all the other objects can access.
+
+How can I access a variable in one object repeatedly, so that when it updates I get the updated variable, from another object?
+
+### How to access RectTransform's left, right, top, bottom positions?
+
+I have a UI Canvas with render mode world space set. 
+For all UI elements that belong to this canvas, I am seeing 'left', 'right', 'top' and 'bottom' variables in the RectTransform component in the editor. 
+Any ways to access these variables via code?
+
+### Big questions
+
+Is morality relative or universal?
+Does god exists?
+What define happiness?
+What is the meaning of life?
+Unity or Unreal?
+
+### How to do deep learning scripting machine
+
+I'm bad at making scripts so I though I would create an AI that can create scripts in my place.
+
+Can you help me do it?

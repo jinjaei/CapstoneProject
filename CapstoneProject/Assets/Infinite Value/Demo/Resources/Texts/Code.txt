@@ -1,0 +1,347 @@
+### AdvancedProgram.cs
+
+System.Console.WriteLine("Hello World");
+
+### MyFirstGame.c
+
+#include <stdio.h>
+int main() {   
+    int n;
+   
+    printf("Enter an odd integer: ");  
+    
+    scanf("%d", &n);
+    
+    if (n % 2 == 1)
+        printf("Congratulations !");
+    else
+        printf("You loose !");
+
+    return 0;
+}
+
+### SimpleGameLoop.c
+
+int main()
+{
+    while (true)
+    {
+        ProcessInput();
+        Update();
+        Render();
+    }
+}
+
+### WhoNeedsForeachAnyway.cs
+
+void LoopDisplay(string[] strArray)
+{
+    if (strArray == null || strArray.Length == 0)
+        goto end;
+
+    int i = 0;
+
+    begin:
+    Debug.Log(strArray[i++]);
+
+    if (i < strArray.Length)
+        goto begin;
+
+    end:
+}
+
+### NoProblemsHere.cs
+
+void XD()
+{
+    while (true);
+}
+
+### I_Love_Comments.cs
+
+// This function will count the number of 'A' characters (ASCII code 65) in the given string text.
+// It return the count (0 for no A, 1 for one A, 2 for two A, etc).
+// It may not return a negative integer (System.Int32).
+// This may not throw an exception.
+// This is usefull if you want to know how many A are in a given string.
+int CountA(string text)
+{
+    // This will initialize a new integer (System.Int32) with a value of 0.
+    // The variable name count stands for the count of A characters in the string text.
+    int count = 0;
+
+    // This will initialize a new integer (System.Int32) with a value of 0.
+    // The variable name i stands for iterator because it is used as an iterator.
+    int i = 0;
+
+    // This will keep looping until int i (System.Int32 iterator) is equals to the text length (text.Length).
+    // This allow us to check every single character contained in the string text.
+    while (i != text.Length)
+    {
+        // Check wether the currently inspected character is an A (ASCII code 65).
+        // This is done by using the equality comparer operator represented by the == characters.
+        // We access the current inspected char of text by using the [] operator on the text string with the
+        // variable named i.
+        if (text[i] == 'A')
+            // If the test is successful, we will add one to the count value using the ++ operator.
+            // Extra informations about additions can be found here: https://en.wikipedia.org/wiki/Addition
+            ++count;
+
+        // Add one to the variable int i (System.Int32 iterator).
+        // For example, if i was at 0, it will be at 1. If i was at 1, it will be at 2. Etc.
+        // Dont remove this line, it will create an infinite loop.
+        ++i;
+    }
+
+    // return count
+    return count;
+}
+
+### HelloWorld.bf
+
+++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.
+
+### HelloWorld.ArnoldC
+
+IT'S SHOWTIME
+TALK TO THE HAND "Hello World"
+YOU HAVE BEEN TERMINATED
+
+### HelloWorld.Hexagony
+
+   H ; e ;
+  l ; d ; *
+ ; r ; o ; W
+l ; ; o ; * 4
+ 3 3 ; @ . >
+  ; 2 3 < \
+   4 ; * /
+
+### HelloWorld.COW
+
+MoO MoO MoO MoO MoO MoO MoO MoO MOO moO MoO MoO MoO MoO MoO moO MoO MoO MoO MoO moO MoO MoO MoO MoO moO MoO MoO MoO MoO MoO MoO MoO
+MoO MoO moO MoO MoO MoO MoO mOo mOo mOo mOo mOo MOo moo moO moO moO moO Moo moO MOO mOo MoO moO MOo moo mOo MOo MOo MOo Moo MoO MoO 
+MoO MoO MoO MoO MoO Moo Moo MoO MoO MoO Moo MMM mOo mOo mOo MoO MoO MoO MoO Moo moO Moo MOO moO moO MOo mOo mOo MOo moo moO moO MoO 
+MoO MoO MoO MoO MoO MoO MoO Moo MMM MMM Moo MoO MoO MoO Moo MMM MOo MOo MOo Moo MOo MOo MOo MOo MOo MOo MOo MOo Moo mOo MoO Moo
+
+### HelloWorld.SNUSP
+
+       /@@@@++++#               #+++@@\                #-----@@@\n
+$@\H.@/e.+++++++l.l.+++o.>>++++.< .<@/w.@\o.+++r.++@\l.@\d.>+.@/.#
+  \@@@@=>++++>+++++<<@+++++#       #---@@/!=========/!==/
+
+### HelloWorld.SpleenMap
+
+   .++  ...+...+...
+ +++ +* .         +
+++      ++       +.
+.        +       +
+.+       + +..+ ++
+ ++ +++ .+ +  + +
+  +.. + .  + .+ .++
+      . ...+ +    +
+    ++.      +. ++.
+    +         . .
+    .+       ++ ++
+     +++     +   +++   ?++.
+       +     +     +      .
+       .     +   ++.     ++
+      ++     ++. +  +++  +
+      +        . +... ++ +
+      .+   ++. .       +..
+       +++ + +++
+         ++.
+
+### C_is_simple.c
+
+void Execute(void (*(*f[])())())
+{
+    (*(*f[0])())();
+    (*(*f[1])())();
+    (*(*f[2])())();
+    (*(*f[3])())();
+}
+
+### Meta.cs
+
+namespace IV_Demo
+{
+    public class PlayZone : MonoBehaviour
+    {
+        void Update()
+        {
+            if (AnyKeyboardKeyDown())
+                DoOneTypePress();
+
+            if (TextIsOver())
+                AddToGames();
+        }
+    }
+}
+
+### CompleteGameLoop.c
+
+int main()
+{
+    double previous = GetCurrentTime();
+    double lag = 0.0;
+    while (true)
+    {
+        double current = GetCurrentTime();
+        double elapsed = current - previous;
+        previous = current;
+        lag += elapsed;
+
+        ProcessInput();
+
+        while (lag >= MS_PER_UPDATE)
+        {
+            Update();
+            lag -= MS_PER_UPDATE;
+        }
+
+        Render();
+    }
+}
+
+### FooBar.cs
+
+public class FooBar
+{
+    public class foO
+    {
+        public string FOo;
+        public int BaR;
+    }
+
+    public class Bar
+    {
+        public string fOO;
+        public int bAr;
+    }
+
+    foO BAr; 
+    Bar FoO;
+
+    string Foo = "FoO";
+    string baR = "bAr";
+    int fOo = 100;
+    int bAr = 'b' + 'a' + 'r';
+
+    public FooBar FoOBaR(foO FoO, Bar BAR)
+    {
+        FooBar fOobAr = new FooBar();
+        fOobAr.FoO = BAR;
+        fOobAr.BAr = FoO;
+
+        fOobAr.FoO.fOO = (fOo + bAr).ToString();
+        fOobAr.BAr.BaR = Foo['b'] + baR['f'];
+
+        fOobAr.FoO.bAr = fOo + bAr * fOobAr.BAr.BaR / fOo;
+        fOobAr.BAr.FOo = Foo + fOo * bAr + baR;
+
+        return fOobAr;
+    }
+}
+
+### SudokuSolver.cs
+
+class SudokuSolver
+{
+    public static bool Solve(char[,] board)
+    {
+        for (int i = 0; i < board.GetLength(0); i++)
+            for (int j = 0; j < board.GetLength(1); j++)
+                if (board[i, j] == '.')
+                {
+                    for (char c = '1'; c <= '9'; c++)
+                        if (IsValid(board, i, j, c))
+                        {
+                            board[i, j] = c;
+      
+                            if (Solve(board))
+                                return true;
+                            else
+                                board[i, j] = '.';
+                        }
+
+                    return false;
+                }
+
+        return true;
+    }
+
+    static bool IsValid(char[,] board, int row, int col, char c)
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            if (board[i, col] != '.' && board[i, col] == c)
+                return false;
+
+            if (board[row, i] != '.' && board[row, i] == c)
+                return false;
+
+            if (board[3 * (row / 3) + i / 3, 3 * (col / 3) + i % 3] != '.' && board[3 * (row / 3) + i / 3, 3 * (col / 3) + i % 3] == c)
+                return false;  
+        }
+        return true;
+    }
+}
+
+### FastInverseSquareRoot.c
+
+float Q_rsqrt( float number )
+{
+	long i;
+	float x2, y;
+	const float threehalfs = 1.5F;
+
+	x2 = number * 0.5F;
+	y  = number;
+	i  = * ( long * ) &y;                       // evil floating point bit level hacking
+	i  = 0x5f3759df - ( i >> 1 );               // what the fuck? 
+	y  = * ( float * ) &i;
+	y  = y * ( threehalfs - ( x2 * y * y ) );   // 1st iteration
+//	y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration, this can be removed
+
+	return y;
+}
+
+### NoobCraft.cs
+
+public class Minecraft
+{
+    void WorldGeneration()
+    {
+        for (int x = 0; x < 100; x++)
+            for (int y = 0; y < 100; y++)
+                for (int z = 0; z < 100; z++)
+                    if (Random.Range(0f, 1f) < 0.5f)
+                        GameObject.CreatePrimitive(PrimitiveType.Cube).transform.position = new Vector3(x, y, z);
+    }
+}
+
+### GameOfLife.cs
+
+public class Cell
+{
+    public bool IsAlive;
+    public readonly List<Cell> neighbors = new List<Cell>();
+
+    private bool IsAliveNext;
+    public void DetermineNextLiveState()
+    {
+        int liveNeighbors = neighbors.Where(x => x.IsAlive).Count();
+
+        if (IsAlive)
+            IsAliveNext = liveNeighbors == 2 || liveNeighbors == 3;
+        else
+            IsAliveNext = liveNeighbors == 3;
+    }
+
+    public void Advance()
+    {
+        IsAlive = IsAliveNext;
+    }
+}
+

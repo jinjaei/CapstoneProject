@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 609dc6b095c05d04181937a3c48f637e, type: 3}
+  m_Name: 20 Juste Tools asset
+  m_EditorClassIdentifier: 
+  _name: Juste Tools asset
+  description: 'Wow, this asset will make creating video games so smooth !
+
+    Seriously, buy my assets if you think you''ll enjoy them :).'
+  image: {fileID: 21300006, guid: 122c99a52fc35454d867c7acf28c623e, type: 3}
+  targetType: 0
+  incomeTarget: 
+  countForPossibleBuy: 0
+  increaseRatio: 1000000
+  price:
+    s_digits: 1
+    s_exponent: 35
+  cheatOnly: 0

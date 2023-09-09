@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1e665104681d74f8bc8050fd0fd1e5, type: 3}
+  m_Name: Configuration
+  m_EditorClassIdentifier: 
+  icon: {fileID: 2800000, guid: 04bd83d112df82b4597b039b778ff6bc, type: 3}
+  _maxDisplayedDigits: 8
+  _unitsList:
+  - k
+  - M
+  - G
+  - T
+  - P
+  - E
+  - Z
+  - Y
+  _displayOptions: 1
+  _numberFormatType: 0
+  _decimalPoints:
+  - .
+  _separations:
+  - ','
+  _exponents:
+  - e
+  - E
+  _culture:
+    type: 0
+    name: 
+  _doubleClickDelay: 0.5
+  _splitFullString: 1
+  _drawRawEdit: 1
+  _drawMethods: 1
+  _drawReadOnlyProperties: 1
+  _drawTitles: 1

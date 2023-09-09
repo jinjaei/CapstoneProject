@@ -1,0 +1,61 @@
+### Game idea 213.docx
+
+A turn based pacman.
+
+### 3C.docx
+
+3C:
+    * Cucumber
+    * Cake
+    * Coal
+
+### ElevatorPitch.docx
+
+My game is about throwing metal boxes that people use to climb up big buildings.
+
+### My first game.docx
+
+I've started learning Unity 2 weeks ago so I thought I would start with something simple.
+
+My game will be a procedurally generated MMORPG with cross platform play, modifiable terrain and animated cinematics.
+It will have support for modding, VR, AR and also feature a single player open world campaign.
+
+I'm getting pretty good thanks to some youtube tutorials so it should be done in about a mongth.
+
+### I'm drunk.docx
+
+BEST IDEA:
+"A guy walks into a bar, the game"
+
+### Most original idea ever.docx
+
+My never seen concept of a game:
+An electrician named Lorenzo has to save the princess Nectarine that got captured by Reswob, an evil snail with spikes on his shell.
+Lorenzo is able to jump and can eat brussels sprouts to grow bigger. He can also pick up snowflakes that will grant him speed and invicibility for a few seconds.
+The game will be divided into multiple zones that I've decided to call "levels" and the camera will be on the side.
+
+### Game idea 1784.docx
+
+A real time card game.
+
+### Game idea 17.docx
+
+An auto-chess with actual chess pieces.
+
+### Game idea 9673.docx
+
+A platformer game where you play the platform.
+
+### Meta.docx
+
+Game clicker:
+
+Serves as a demo for the Infinite Value asset.
+
+The goal is to create as much games as possible.
+You can create new game by typing a text, typing can be done by using any key on the keyboard.
+Creating games give you money, you can use your money to buy upgrades or incomes that will generate games for you.
+
+The demo will feature an import and export save system, and buttons to mute the sounds and music.
+
+It will probably be the best demo ever created ;).
