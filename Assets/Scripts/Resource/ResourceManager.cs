@@ -46,11 +46,7 @@ public class ResourceManager : MonoBehaviour
     private InfVal startStone = 1123123123123123; // 시작 골드 값
     private InfVal startDiamond = 123; // 시작 다이아 값
 
-    private bool consumAble = false; // 소모 가능 여부
-
     public event Action<ResourceType, InfVal> OnResourceChanged; // 값 변환 이벤트
-
-
 
     public enum ResourceType
     {
@@ -144,29 +140,9 @@ public class ResourceManager : MonoBehaviour
         switch (resourceType)
         {
             case ResourceType.Stone:
-                if (consumAble == true)
-                {
-                    Stone -= amount;
-                }
-                break;
-
-            case ResourceType.Diamond:
-                if (consumAble == true)
-                {
-                    Diamond -= amount;
-                }
-                break;
-        }
-    }
-
-    public void CheckResourceAmount(ResourceType resourceType, InfVal amount)
-    {
-        switch (resourceType)
-        {
-            case ResourceType.Stone:
                 if (currentStone >= amount)
                 {
-                    consumAble = true;
+                    Stone -= amount;
                 }
                 else Debug.Log($"{resourceType}이 부족합니다.");
                 break;
@@ -174,7 +150,7 @@ public class ResourceManager : MonoBehaviour
             case ResourceType.Diamond:
                 if (currentDiamond >= amount)
                 {
-                    consumAble = true;
+                    Diamond -= amount;
                 }
                 else Debug.Log($"{resourceType}이 부족합니다.");
                 break;
