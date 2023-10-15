@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: Stronger Primitive Man
   monsterHP: 125
+  dropResourceAmount:
+    s_digits: 125
+    s_exponent: 0

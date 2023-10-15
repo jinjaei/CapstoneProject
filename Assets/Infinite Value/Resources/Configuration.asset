@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Configuration
   m_EditorClassIdentifier: 
   icon: {fileID: 2800000, guid: 04bd83d112df82b4597b039b778ff6bc, type: 3}
-  _maxDisplayedDigits: 8
+  _maxDisplayedDigits: 4
   _unitsList:
   - k
   - M
