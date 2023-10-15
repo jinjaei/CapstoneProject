@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class GameUI : MonoBehaviour
 
     public static float time = 30; // 보스 제한 시간 30초
     bool TimerStart = false;
+
 
     // Start is called before the first frame update
     void Awake()
