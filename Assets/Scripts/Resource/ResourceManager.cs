@@ -44,7 +44,7 @@ public class ResourceManager : MonoBehaviour
     private InfVal currentDiamond; // 현재 다이아 값
 
     private InfVal startStone = 1123123123123123; // 시작 골드 값
-    private InfVal startDiamond = 0; // 시작 다이아 값
+    private InfVal startDiamond = 123; // 시작 다이아 값
 
     private bool consumAble = false; // 소모 가능 여부
 
