@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: Primitive Man
   monsterHP: 100
+  dropResourceAmount:
+    s_digits: 100
+    s_exponent: 0
