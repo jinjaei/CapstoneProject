@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: Stronger Primitive Man
   monsterHP: 125
+  dropResorceAmount: 125

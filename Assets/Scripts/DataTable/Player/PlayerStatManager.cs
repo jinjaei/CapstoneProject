@@ -52,16 +52,22 @@ public class PlayerStatManager : MonoBehaviour
     public void AddLevel(int amount)
     {
         playerLevel += amount;
-        AddPower(amount);
     }
 
-    public void AddPower(float amount)
+    public void AddPower(float count)
     {
-        playerPower += amount/100;
+        for(int i=0; i < count; i++)
+        {
+            playerPower += playerPower * 0.25f;
+
+        }
     }
 
-    public void AddCoolDown(float amount)
+    public void AddCoolDown(float count)
     {
-        playerCoolDown -= amount;
+        for (int i = 0; i < count; i++)
+        {
+            playerCoolDown -= playerCoolDown * 0.25f;
+        }
     }
 }
