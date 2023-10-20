@@ -43,8 +43,10 @@ public class ResourceManager : MonoBehaviour
     [SerializeField]
     private InfVal currentDiamond; // 현재 다이아 값
 
-    private InfVal startStone = 1123123123123123; // 시작 골드 값
+    private InfVal startStone = 0; // 시작 골드 값
     private InfVal startDiamond = 123; // 시작 다이아 값
+
+    private bool consumeAble = false;
 
     public event Action<ResourceType, InfVal> OnResourceChanged; // 값 변환 이벤트
 
@@ -140,9 +142,30 @@ public class ResourceManager : MonoBehaviour
         switch (resourceType)
         {
             case ResourceType.Stone:
-                if (currentStone >= amount)
+                if (consumeAble)
                 {
                     Stone -= amount;
+                }
+                break;
+
+            case ResourceType.Diamond:
+                if (consumeAble)
+                {
+                    Diamond -= amount;
+                }
+                break;
+        }
+    }
+
+    public void CheckResourceAmount(ResourceType resourceType, InfVal amount)
+    {
+        // 자원 감소 시 확인 메서드
+        switch (resourceType)
+        {
+            case ResourceType.Stone:
+                if (currentStone >= amount)
+                {
+                    consumeAble = true;
                 }
                 else Debug.Log($"{resourceType}이 부족합니다.");
                 break;
@@ -150,7 +173,7 @@ public class ResourceManager : MonoBehaviour
             case ResourceType.Diamond:
                 if (currentDiamond >= amount)
                 {
-                    Diamond -= amount;
+                    consumeAble = true;
                 }
                 else Debug.Log($"{resourceType}이 부족합니다.");
                 break;
