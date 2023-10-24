@@ -1,28 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI StoneText; // 스톤 텍스트
     [SerializeField] TextMeshProUGUI DiaText; // 다이아 텍스트
-    [SerializeField] UnityEngine.UI.Slider EnemyHPBar; // 일반 적 체력 바
-    [SerializeField] UnityEngine.UI.Slider BossHPBar; // 보스 체력 바
-    [SerializeField] UnityEngine.UI.Slider TimerBar; // 타이머 바
-    [SerializeField] UnityEngine.UI.Button BossTryButton; // 보스 시도 버튼
-    [SerializeField] UnityEngine.UI.Image BossFail; // 보스 사냥 실패 창
-    [SerializeField] UnityEngine.UI.Image GameExit; // 게임 종료 창
+    [SerializeField] Slider BossHPBar; // 보스 체력 바
+    [SerializeField] Slider TimerBar; // 타이머 바
+    [SerializeField] Button BossTryButton; // 보스 시도 버튼
+    [SerializeField] Image BossFail; // 보스 사냥 실패 창
+    [SerializeField] Image GameExit; // 게임 종료 창
     [SerializeField] GameObject StoneUpgradeUI; // 광석 버튼
     [SerializeField] GameObject LevelUpgradeUI; // 강화 버튼
 
-    [SerializeField] UnityEngine.UI.Button StoneLv2; // 광석 2레벨(수정석)
+    [SerializeField] Button StoneLv2; // 광석 2레벨(수정석)
 
-    [SerializeField] UnityEngine.UI.Button Level1Upgrade; // 1 레벨씩 강화
-    [SerializeField] UnityEngine.UI.Button Level10Upgrade; // 10 레벨씩 강화
-    [SerializeField] UnityEngine.UI.Button Level100Upgrade; // 100 레벨씩 강화
+    [SerializeField] Button Level1Upgrade; // 1 레벨씩 강화
+    [SerializeField] Button Level10Upgrade; // 10 레벨씩 강화
+    [SerializeField] Button Level100Upgrade; // 100 레벨씩 강화
 
     public static float time = 30; // 보스 제한 시간 30초
     bool TimerStart = false;
@@ -31,7 +30,6 @@ public class GameUI : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        NormalEnemyHunting();
         LevelUpgradeEnabled();
         GameExit.gameObject.SetActive(false);
     }
@@ -61,11 +59,10 @@ public class GameUI : MonoBehaviour
             StoneLv2.interactable = true;
     }
 
-    public void NormalEnemyHunting() // 일반 적 사냥 상태
+    public void NormalEnemyHunting() // 일반 몬스터 사냥 상태
     {
         TimerStart = false;
         BossTryButton.gameObject.SetActive(true);
-        EnemyHPBar.gameObject.SetActive(true);
         BossHPBar.gameObject.SetActive(false);
         TimerBar.gameObject.SetActive(false);
         BossFail.gameObject.SetActive(false);
@@ -77,7 +74,6 @@ public class GameUI : MonoBehaviour
         TimerBar.value = float.MaxValue;
         TimerStart = true;
         BossTryButton.gameObject.SetActive(false);
-        EnemyHPBar.gameObject.SetActive(false);
         BossHPBar.gameObject.SetActive(true);
         TimerBar.gameObject.SetActive(true);
     }
