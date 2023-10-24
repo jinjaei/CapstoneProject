@@ -46,7 +46,7 @@ public class ResourceManager : MonoBehaviour
     private InfVal startStone = 0; // 시작 골드 값
     private InfVal startDiamond = 123; // 시작 다이아 값
 
-    private bool consumeAble = false;
+    public bool consumeAble = false;
 
     public event Action<ResourceType, InfVal> OnResourceChanged; // 값 변환 이벤트
 
