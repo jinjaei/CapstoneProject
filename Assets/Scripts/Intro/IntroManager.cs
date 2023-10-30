@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class IntroManager : MonoBehaviour
 {
-    [SerializeField] Image GameIntroImage = null;
-    [SerializeField] Image LogoBackground = null;
-    [SerializeField] TextMeshProUGUI Logo = null;
+    [SerializeField] AudioSource IntroBGM;
+    [SerializeField] TextMeshProUGUI Logo;
+    [SerializeField] Image LogoBackground;
+    [SerializeField] Image GameIntroImage;
+    [SerializeField] Image SignInWindow;
     bool TouchAble = false;
 
     private void Awake()
@@ -32,7 +34,8 @@ public class IntroManager : MonoBehaviour
                     Vector3 pos = Input.GetTouch(0).position;
 
                     if (pos.y <= Screen.height / 2)
-                        SceneManager.LoadScene("GameScene");
+                        SignInWindow.gameObject.SetActive(true);
+                    //SceneManager.LoadScene("GameScene");
                 }
             }
         }
@@ -62,5 +65,16 @@ public class IntroManager : MonoBehaviour
 
         GameIntroImage.enabled = true;
         TouchAble = true;
+        IntroBGM.Play();
+    }
+
+    public void SignInSuccess()
+    {
+        SceneManager.LoadScene("GameScene");
+    }
+
+    public void WindowExit()
+    {
+        SignInWindow.gameObject.SetActive(false);
     }
 }

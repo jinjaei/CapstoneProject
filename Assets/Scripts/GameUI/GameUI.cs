@@ -12,10 +12,11 @@ public class GameUI : MonoBehaviour
     [SerializeField] Slider BossHPBar; // 보스 체력 바
     [SerializeField] Slider TimerBar; // 타이머 바
     [SerializeField] Button BossTryButton; // 보스 시도 버튼
-    [SerializeField] Image BossFail; // 보스 사냥 실패 창
-    [SerializeField] Image GameExit; // 게임 종료 창
-    [SerializeField] GameObject StoneUpgradeUI; // 광석 버튼
-    [SerializeField] GameObject LevelUpgradeUI; // 강화 버튼
+    [SerializeField] Image SettingWindow; // 설정 창
+    [SerializeField] Image BossFailWindow; // 보스 사냥 실패 창
+    [SerializeField] Image GameExitWindow; // 게임 종료 창
+    [SerializeField] GameObject StoneUI; // 광석 UI
+    [SerializeField] GameObject EnhanceUI; // 강화 UI
 
     [SerializeField] Button StoneLv2; // 광석 2레벨(수정석)
 
@@ -26,14 +27,6 @@ public class GameUI : MonoBehaviour
     public static float time = 30; // 보스 제한 시간 30초
     bool TimerStart = false;
 
-
-    // Start is called before the first frame update
-    void Awake()
-    {
-        LevelUpgradeEnabled();
-        GameExit.gameObject.SetActive(false);
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -41,13 +34,13 @@ public class GameUI : MonoBehaviour
         {
             Timer();
             if (TimerBar.value == 0)
-                BossFail.gameObject.SetActive(true);
+                BossFailWindow.gameObject.SetActive(true);
         }
 
         if (Application.platform == RuntimePlatform.Android)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
-                GameExit.gameObject.SetActive(true);
+                GameExitWindow.gameObject.SetActive(true);
         }
 
         StoneUpgrade();
@@ -65,7 +58,7 @@ public class GameUI : MonoBehaviour
         BossTryButton.gameObject.SetActive(true);
         BossHPBar.gameObject.SetActive(false);
         TimerBar.gameObject.SetActive(false);
-        BossFail.gameObject.SetActive(false);
+        BossFailWindow.gameObject.SetActive(false);
     }
 
     public void BossTry() // 보스 트라이 상태
@@ -87,15 +80,22 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    public void StoneUpgradeEnabled() // 광석 업그레이드 창 활성화
+    public void StoneUIEnabled() // 광석 UI 활성화
     {
-        LevelUpgradeUI.SetActive(false);
-        StoneUpgradeUI.SetActive(true);
+        EnhanceUI.SetActive(false);
+        StoneUI.SetActive(true);
+        SoundManager.instance.PlaySound("ButtonClick");
     }
-    public void LevelUpgradeEnabled() // 강화 창 활성화
+    public void EnhanceUIEnabled() // 강화 UI 활성화
     {
-        StoneUpgradeUI.SetActive(false);
-        LevelUpgradeUI.SetActive(true);
+        StoneUI.SetActive(false);
+        EnhanceUI.SetActive(true);
+        SoundManager.instance.PlaySound("ButtonClick");
+    }
+    public void SettingWindowEnabled() // 설정 창 활성화
+    {
+        SettingWindow.gameObject.SetActive(true);
+        SoundManager.instance.PlaySound("ButtonClick");
     }
 
     public void Level1UpgradeEnabled() // 1 레벨씩 강화 버튼 활성화
@@ -103,26 +103,31 @@ public class GameUI : MonoBehaviour
         Level1Upgrade.interactable = false;
         Level10Upgrade.interactable = true;
         Level100Upgrade.interactable = true;
+        SoundManager.instance.PlaySound("ButtonClick");
     }
     public void Level10UpgradeEnabled() // 10 레벨씩 강화 버튼 활성화
     {
         Level1Upgrade.interactable = true;
         Level10Upgrade.interactable = false;
         Level100Upgrade.interactable = true;
+        SoundManager.instance.PlaySound("ButtonClick");
     }
     public void Level100UpgradeEnabled() // 100 레벨씩 강화 버튼 활성화
     {
         Level1Upgrade.interactable = true;
         Level10Upgrade.interactable = true;
         Level100Upgrade.interactable = false;
+        SoundManager.instance.PlaySound("ButtonClick");
     }
 
-    public void GameExitOK() // 게임 나가기 확인
+    public void GameExit() // 게임 나가기 확인
     {
         Application.Quit();
     }
-    public void GameExitCancel() // 게임 나가기 취소
+    public void WindowExit() // 설정 창 끄기 및 게임 나가기 취소
     {
-        GameExit.gameObject.SetActive(false);
+        SettingWindow.gameObject.SetActive(false);
+        GameExitWindow.gameObject.SetActive(false);
+        SoundManager.instance.PlaySound("ButtonClick");
     }
 }
