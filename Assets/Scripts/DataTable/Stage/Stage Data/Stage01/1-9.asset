@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 1-9
   m_EditorClassIdentifier: 
   mainStageNumber: 1
-  subStageNumber: 10
+  subStageNumber: 9
   monsterPrefab:
   - {fileID: 1709944766186116993, guid: 93d4627e4a9681146b2efbf93f9adf20, type: 3}
   - {fileID: 1709944766186116993, guid: 93d4627e4a9681146b2efbf93f9adf20, type: 3}
-  - {fileID: 1709944766186116993, guid: 93d4627e4a9681146b2efbf93f9adf20, type: 3}
-  - {fileID: 1709944766186116993, guid: 93d4627e4a9681146b2efbf93f9adf20, type: 3}
-  - {fileID: 1709944766186116993, guid: 93d4627e4a9681146b2efbf93f9adf20, type: 3}
+  - {fileID: 7785829429151928582, guid: 554462b0360361344bbc0a3a5ab4fc7c, type: 3}
+  - {fileID: 7785829429151928582, guid: 554462b0360361344bbc0a3a5ab4fc7c, type: 3}
+  - {fileID: 7785829429151928582, guid: 554462b0360361344bbc0a3a5ab4fc7c, type: 3}
