@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class IntroManager : MonoBehaviour
 {
-    [SerializeField] AudioSource IntroBGM;
+    [SerializeField] AudioSource IntroBGM; // 인트로 배경 음악
+    [SerializeField] AudioSource ButtonSFX; // 버튼 클릭 효과음
     [SerializeField] TextMeshProUGUI Logo;
     [SerializeField] TextMeshProUGUI GameStartText;
     [SerializeField] Image LogoBackground;
@@ -70,6 +71,11 @@ public class IntroManager : MonoBehaviour
         TouchAble = true;
         IntroBGM.Play();
     }
+    public void ButtonSFXPlay()
+    {
+        ButtonSFX.Play();
+    }
+
     public void SignUpSuccess()
     {
         ToastMessage.I.ShowToastMessage("회원가입 완료", ToastMessage.ToastLength.Short);

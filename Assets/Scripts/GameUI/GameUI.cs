@@ -84,18 +84,15 @@ public class GameUI : MonoBehaviour
     {
         EnhanceUI.SetActive(false);
         StoneUI.SetActive(true);
-        SoundManager.instance.PlaySound("ButtonClick");
     }
     public void EnhanceUIEnabled() // 강화 UI 활성화
     {
         StoneUI.SetActive(false);
         EnhanceUI.SetActive(true);
-        SoundManager.instance.PlaySound("ButtonClick");
     }
     public void SettingWindowEnabled() // 설정 창 활성화
     {
         SettingWindow.gameObject.SetActive(true);
-        SoundManager.instance.PlaySound("ButtonClick");
     }
 
     public void Level1UpgradeEnabled() // 1 레벨씩 강화 버튼 활성화
@@ -103,21 +100,18 @@ public class GameUI : MonoBehaviour
         Level1Upgrade.interactable = false;
         Level10Upgrade.interactable = true;
         Level100Upgrade.interactable = true;
-        SoundManager.instance.PlaySound("ButtonClick");
     }
     public void Level10UpgradeEnabled() // 10 레벨씩 강화 버튼 활성화
     {
         Level1Upgrade.interactable = true;
         Level10Upgrade.interactable = false;
         Level100Upgrade.interactable = true;
-        SoundManager.instance.PlaySound("ButtonClick");
     }
     public void Level100UpgradeEnabled() // 100 레벨씩 강화 버튼 활성화
     {
         Level1Upgrade.interactable = true;
         Level10Upgrade.interactable = true;
         Level100Upgrade.interactable = false;
-        SoundManager.instance.PlaySound("ButtonClick");
     }
 
     public void GameExit() // 게임 나가기 확인
@@ -128,6 +122,5 @@ public class GameUI : MonoBehaviour
     {
         SettingWindow.gameObject.SetActive(false);
         GameExitWindow.gameObject.SetActive(false);
-        SoundManager.instance.PlaySound("ButtonClick");
     }
 }
