@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager instance;
     public AudioClip[] AudioClips;
 
     [SerializeField] AudioSource BGMPlayer; // ¹è°æ À½¾Ç
@@ -15,8 +14,6 @@ public class SoundManager : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
-
         SoundSlider.onValueChanged.AddListener(ChangeSoundVolume);
     }
     public void PlaySound(string type)
