@@ -8,14 +8,17 @@ public class IntroManager : MonoBehaviour
 {
     [SerializeField] AudioSource IntroBGM;
     [SerializeField] TextMeshProUGUI Logo;
+    [SerializeField] TextMeshProUGUI GameStartText;
     [SerializeField] Image LogoBackground;
     [SerializeField] Image GameIntroImage;
     [SerializeField] Image SignInWindow;
+    [SerializeField] Image SignUpWindow;
     bool TouchAble = false;
 
     private void Awake()
     {
         GameIntroImage.enabled = false;
+        GameStartText.gameObject.SetActive(false);
     }
 
     void Start()
@@ -35,7 +38,6 @@ public class IntroManager : MonoBehaviour
 
                     if (pos.y <= Screen.height / 2)
                         SignInWindow.gameObject.SetActive(true);
-                    //SceneManager.LoadScene("GameScene");
                 }
             }
         }
@@ -64,13 +66,33 @@ public class IntroManager : MonoBehaviour
         }
 
         GameIntroImage.enabled = true;
+        GameStartText.gameObject.SetActive(true);
         TouchAble = true;
         IntroBGM.Play();
+    }
+    public void SignUpSuccess()
+    {
+        ToastMessage.I.ShowToastMessage("회원가입 완료", ToastMessage.ToastLength.Short);
+    }
+
+    public void SignUpCancel()
+    {
+        SignUpWindow.gameObject.SetActive(false);
+    }
+
+    public void SignUpButtonClick()
+    {
+        SignUpWindow.gameObject.SetActive(true);
     }
 
     public void SignInSuccess()
     {
         SceneManager.LoadScene("GameScene");
+    }
+
+    public void SignInFail()
+    {
+        ToastMessage.I.ShowToastMessage("아이디 또는 비밀번호가 틀렸습니다", ToastMessage.ToastLength.Short);
     }
 
     public void WindowExit()
