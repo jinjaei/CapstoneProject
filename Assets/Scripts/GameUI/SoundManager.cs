@@ -10,10 +10,40 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioSource BGMPlayer; // πË∞Ê ¿Ωæ«
     [SerializeField] AudioSource SFXPlayer; // »ø∞˙¿Ω
     [SerializeField] Slider SoundSlider;
-    
+
+    private static object _lock = new object();
+    private static SoundManager _instance = null;
+    public static SoundManager instance
+    {
+        get
+        {
+            if (applicationQuitting)
+            {
+                return null;
+            }
+            lock (_lock)
+            {
+                if (_instance == null)
+                {
+                    GameObject obj = new GameObject("SoundManager ");
+                    obj.AddComponent<SoundManager>();
+                    _instance = obj.GetComponent<SoundManager>();
+                }
+                return _instance;
+            }
+        }
+        set
+        {
+            _instance = value;
+        }
+    }
+    private static bool applicationQuitting = false;
+
 
     void Awake()
     {
+        _instance = this;
+        // ΩÃ±€≈Ê ¿ŒΩ∫≈œΩ∫
         SoundSlider.onValueChanged.AddListener(ChangeSoundVolume);
     }
     public void PlaySound(string type)

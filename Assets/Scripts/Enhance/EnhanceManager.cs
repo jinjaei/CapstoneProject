@@ -48,7 +48,7 @@ public class EnhanceManager : MonoBehaviour
     }
     [HideInInspector] public InfVal powerResourceAmount = 100; //감소시킬 자원의 양 (파워)
     [HideInInspector] public InfVal cooldownResourceAmount = 100; //감소시킬 자원의 양 (공격속도)
-    public int upgradeCount = 1; //업그레이드횟수  
+    [HideInInspector] public int upgradeCount = 1; //업그레이드횟수  
     public void EnhancePower()
     {
         InfVal increaseAmount = powerResourceAmount;
