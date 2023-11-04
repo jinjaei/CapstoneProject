@@ -48,6 +48,8 @@ public class PlayerStatManager : MonoBehaviour
     //public int playerLevel { get; set; }
     public float playerPower = 10;
     public float playerCoolDown = 3f;
+    public int PowerLevel = 1; // 공격력 레벨
+    public int CoolDownLevel = 1; // 공격속도 레벨
 
     /*public void AddLevel(int amount)
     {
@@ -71,6 +73,25 @@ public class PlayerStatManager : MonoBehaviour
         {
             playerCoolDown -= playerCoolDown * 0.001f;
         }
+    }
+
+    public int GetPowerLevelAmount()
+    {
+        // 공격력 레벨 반환
+        if (ResourceManager.instance.consumeAble == true)
+            PowerLevel = PowerLevel + EnhanceManager.instance.upgradeCount;
+        else
+            return PowerLevel;
+        return PowerLevel;
+    }
+    public int GetCoolDownLevelAmount()
+    {
+        // 공격속도 레벨 반환
+        if (ResourceManager.instance.consumeAble == true)
+            CoolDownLevel = CoolDownLevel + EnhanceManager.instance.upgradeCount;
+        else
+            return CoolDownLevel;
+        return CoolDownLevel;
     }
 
     public float GetPowerAmount()

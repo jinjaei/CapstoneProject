@@ -170,6 +170,7 @@ public class ResourceManager : MonoBehaviour
                 else 
                 {
                     consumeAble = false;
+                    ToastMessage.I.ShowToastMessage("스톤이 부족합니다!", ToastMessage.ToastLength.Short);
                     Debug.Log($"{resourceType}이 부족합니다.");
                 } 
                 break;
@@ -182,6 +183,7 @@ public class ResourceManager : MonoBehaviour
                 else
                 {
                     consumeAble = false;
+                    ToastMessage.I.ShowToastMessage("보석이 부족합니다!", ToastMessage.ToastLength.Short);
                     Debug.Log($"{resourceType}이 부족합니다.");
                 }
                 break;
