@@ -7,31 +7,31 @@ using UnityEngine;
 
 public class GameUI : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI StoneText; // ½ºÅæ ÅØ½ºÆ®
-    [SerializeField] TextMeshProUGUI DiaText; // ´ÙÀÌ¾Æ ÅØ½ºÆ®
-    [SerializeField] TextMeshProUGUI powerEnhanceText; // °ø°İ·Â °­È­ ÅØ½ºÆ®
-    [SerializeField] TextMeshProUGUI cooldownEnhanceText; // °ø°İ¼Óµµ °­È­ ÅØ½ºÆ®
-    [SerializeField] TextMeshProUGUI powerResourceText; // °ø°İ·Â ÇÊ¿äÀÚ¿ø ÅØ½ºÆ®
-    [SerializeField] TextMeshProUGUI cooldownResourceText; // °ø°İ¼Óµµ ÇÊ¿äÀÚ¿ø ÅØ½ºÆ®
+    [SerializeField] TextMeshProUGUI StoneText; // ìŠ¤í†¤ í…ìŠ¤íŠ¸
+    [SerializeField] TextMeshProUGUI DiaText; // ë‹¤ì´ì•„ í…ìŠ¤íŠ¸
+    [SerializeField] TextMeshProUGUI powerEnhanceText; // ê³µê²©ë ¥ ê°•í™” í…ìŠ¤íŠ¸
+    [SerializeField] TextMeshProUGUI cooldownEnhanceText; // ê³µê²©ì†ë„ ê°•í™” í…ìŠ¤íŠ¸
+    [SerializeField] TextMeshProUGUI powerResourceText; // ê³µê²©ë ¥ í•„ìš”ìì› í…ìŠ¤íŠ¸
+    [SerializeField] TextMeshProUGUI cooldownResourceText; // ê³µê²©ì†ë„ í•„ìš”ìì› í…ìŠ¤íŠ¸
 
 
 
-    [SerializeField] Slider BossHPBar; // º¸½º Ã¼·Â ¹Ù
-    [SerializeField] Slider TimerBar; // Å¸ÀÌ¸Ó ¹Ù
-    [SerializeField] Button BossTryButton; // º¸½º ½Ãµµ ¹öÆ°
-    [SerializeField] Image SettingWindow; // ¼³Á¤ Ã¢
-    [SerializeField] Image BossFailWindow; // º¸½º »ç³É ½ÇÆĞ Ã¢
-    [SerializeField] Image GameExitWindow; // °ÔÀÓ Á¾·á Ã¢
-    [SerializeField] GameObject StoneUI; // ±¤¼® UI
-    [SerializeField] GameObject EnhanceUI; // °­È­ UI
+    [SerializeField] Slider BossHPBar; // ë³´ìŠ¤ ì²´ë ¥ ë°”
+    [SerializeField] Slider TimerBar; // íƒ€ì´ë¨¸ ë°”
+    [SerializeField] Button BossTryButton; // ë³´ìŠ¤ ì‹œë„ ë²„íŠ¼
+    [SerializeField] Image SettingWindow; // ì„¤ì • ì°½
+    [SerializeField] Image BossFailWindow; // ë³´ìŠ¤ ì‚¬ëƒ¥ ì‹¤íŒ¨ ì°½
+    [SerializeField] Image GameExitWindow; // ê²Œì„ ì¢…ë£Œ ì°½
+    [SerializeField] GameObject StoneUI; // ê´‘ì„ UI
+    [SerializeField] GameObject EnhanceUI; // ê°•í™” UI
 
-    [SerializeField] Button StoneLv2; // ±¤¼® 2·¹º§(¼öÁ¤¼®)
+    [SerializeField] Button StoneLv2; // ê´‘ì„ 2ë ˆë²¨(ìˆ˜ì •ì„)
 
-    [SerializeField] Button Level1Upgrade; // 1 ·¹º§¾¿ °­È­
-    [SerializeField] Button Level10Upgrade; // 10 ·¹º§¾¿ °­È­
-    [SerializeField] Button Level100Upgrade; // 100 ·¹º§¾¿ °­È­
+    [SerializeField] Button Level1Upgrade; // 1 ë ˆë²¨ì”© ê°•í™”
+    [SerializeField] Button Level10Upgrade; // 10 ë ˆë²¨ì”© ê°•í™”
+    [SerializeField] Button Level100Upgrade; // 100 ë ˆë²¨ì”© ê°•í™”
 
-    public static float time = 30; // º¸½º Á¦ÇÑ ½Ã°£ 30ÃÊ
+    public static float time = 30; // ë³´ìŠ¤ ì œí•œ ì‹œê°„ 30ì´ˆ
     bool TimerStart = false;
 
     private void Start()
@@ -58,13 +58,13 @@ public class GameUI : MonoBehaviour
         StoneUpgrade();
     }
 
-    public void StoneUpgrade() // ±¤¼® ¿ÜÇü ¾÷±×·¹ÀÌµå
+    public void StoneUpgrade() // ê´‘ì„ ì™¸í˜• ì—…ê·¸ë ˆì´ë“œ
     {
         if (ResourceManager.instance.Diamond >= 100)
             StoneLv2.interactable = true;
     }
 
-    public void NormalEnemyHunting() // ÀÏ¹İ ¸ó½ºÅÍ »ç³É »óÅÂ
+    public void NormalEnemyHunting() // ì¼ë°˜ ëª¬ìŠ¤í„° ì‚¬ëƒ¥ ìƒíƒœ
     {
         TimerStart = false;
         BossTryButton.gameObject.SetActive(true);
@@ -73,7 +73,7 @@ public class GameUI : MonoBehaviour
         BossFailWindow.gameObject.SetActive(false);
     }
 
-    public void BossTry() // º¸½º Æ®¶óÀÌ »óÅÂ
+    public void BossTry() // ë³´ìŠ¤ íŠ¸ë¼ì´ ìƒíƒœ
     {
         time = 30;
         TimerBar.value = float.MaxValue;
@@ -83,7 +83,7 @@ public class GameUI : MonoBehaviour
         TimerBar.gameObject.SetActive(true);
     }
 
-    public void Timer() // Å¸ÀÌ¸Ó
+    public void Timer() // íƒ€ì´ë¨¸
     {
         if (time > 0)
         {
@@ -92,61 +92,65 @@ public class GameUI : MonoBehaviour
         }
     }
 
-    public void StoneUIEnabled() // ±¤¼® UI È°¼ºÈ­
+    public void StoneUIEnabled() // ê´‘ì„ UI í™œì„±í™”
     {
         EnhanceUI.SetActive(false);
         StoneUI.SetActive(true);
-        SoundManager.instance.PlaySound("ButtonClick");
     }
-    public void EnhanceUIEnabled() // °­È­ UI È°¼ºÈ­
+    public void EnhanceUIEnabled() // ê°•í™” UI í™œì„±í™”
     {
         StoneUI.SetActive(false);
         EnhanceUI.SetActive(true);
-        SoundManager.instance.PlaySound("ButtonClick");
     }
-    public void SettingWindowEnabled() // ¼³Á¤ Ã¢ È°¼ºÈ­
+    public void SettingWindowEnabled() // ì„¤ì • ì°½ í™œì„±í™”
     {
         SettingWindow.gameObject.SetActive(true);
-        SoundManager.instance.PlaySound("ButtonClick");
     }
 
-    public void Level1UpgradeEnabled() // 1 ·¹º§¾¿ °­È­ ¹öÆ° È°¼ºÈ­
+    public void Level1UpgradeEnabled() // 1 ë ˆë²¨ì”© ê°•í™” ë²„íŠ¼ í™œì„±í™”
     {
         Level1Upgrade.interactable = false;
         Level10Upgrade.interactable = true;
         Level100Upgrade.interactable = true;
 
-        EnhanceManager.instance.SetUpgradeCount1(); // 1 °­È­¸ğµå
+
+        EnhanceManager.instance.SetUpgradeCount1(); // 1 ê°•í™”ëª¨ë“œ
         SettingAPUpgradeText();
         SettingASUpgradeText();
 
         SoundManager.instance.PlaySound("ButtonClick");
+
     }
-    public void Level10UpgradeEnabled() // 10 ·¹º§¾¿ °­È­ ¹öÆ° È°¼ºÈ­
+    public void Level10UpgradeEnabled() // 10 ë ˆë²¨ì”© ê°•í™” ë²„íŠ¼ í™œì„±í™”
     {
         Level1Upgrade.interactable = true;
         Level10Upgrade.interactable = false;
         Level100Upgrade.interactable = true;
 
-        EnhanceManager.instance.SetUpgradeCount10(); // 10 °­È­¸ğµå
+
+        EnhanceManager.instance.SetUpgradeCount10(); // 10 ê°•í™”ëª¨ë“œ
         SettingAPUpgradeText();
         SettingASUpgradeText();
 
 
         SoundManager.instance.PlaySound("ButtonClick");
+
     }
-    public void Level100UpgradeEnabled() // 100 ·¹º§¾¿ °­È­ ¹öÆ° È°¼ºÈ­
+    public void Level100UpgradeEnabled() // 100 ë ˆë²¨ì”© ê°•í™” ë²„íŠ¼ í™œì„±í™”
     {
         Level1Upgrade.interactable = true;
         Level10Upgrade.interactable = true;
         Level100Upgrade.interactable = false;
 
-        EnhanceManager.instance.SetUpgradeCount100(); // 100 °­È­¸ğµå
+
+        EnhanceManager.instance.SetUpgradeCount100(); // 100 ê°•í™”ëª¨ë“œ
         SettingAPUpgradeText();
         SettingASUpgradeText();
 
 
         SoundManager.instance.PlaySound("ButtonClick");
+
+
     }
     public void SettingAPUpgradeText()
     {
@@ -159,14 +163,13 @@ public class GameUI : MonoBehaviour
         cooldownResourceText.text = EnhanceManager.instance.GetResourceIncrease(EnhanceManager.instance.cooldownResourceAmount).ToString();
     }
 
-    public void GameExit() // °ÔÀÓ ³ª°¡±â È®ÀÎ
+    public void GameExit() // ê²Œì„ ë‚˜ê°€ê¸° í™•ì¸
     {
         Application.Quit();
     }
-    public void WindowExit() // ¼³Á¤ Ã¢ ²ô±â ¹× °ÔÀÓ ³ª°¡±â Ãë¼Ò
+    public void WindowExit() // ì„¤ì • ì°½ ë„ê¸° ë° ê²Œì„ ë‚˜ê°€ê¸° ì·¨ì†Œ
     {
         SettingWindow.gameObject.SetActive(false);
         GameExitWindow.gameObject.SetActive(false);
-        SoundManager.instance.PlaySound("ButtonClick");
     }
 }
