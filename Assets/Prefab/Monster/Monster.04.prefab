@@ -65,6 +65,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4938785445510338516}
+  - {fileID: 222978163765781905}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -80,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a325c4e6ae220c419cd8b84f3af97b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MonsterHPBar: {fileID: 222978163698954008}
+  monsterHPBar: {fileID: 222978163698954008}
   monsterDataTable: {fileID: 11400000, guid: 1c316d5a59596f94c9e1289a160da79f, type: 2}
 --- !u!1 &222978162852923996
 GameObject:
@@ -349,16 +350,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222978163765781906}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.6}
+  m_LocalScale: {x: 0.006, y: 0.006, z: 0}
   m_Children:
   - {fileID: 222978163698954009}
-  m_Father: {fileID: 4938785445510338516}
-  m_RootOrder: 10
+  m_Father: {fileID: 222978162566257253}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1.5}
+  m_AnchoredPosition: {x: 0, y: 0.29999995}
   m_SizeDelta: {x: 100, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &222978163765781910

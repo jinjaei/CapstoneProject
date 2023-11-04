@@ -44,7 +44,7 @@ public class ResourceManager : MonoBehaviour
     private InfVal currentDiamond; // 현재 다이아 값
 
     private InfVal startStone = 0; // 시작 골드 값
-    private InfVal startDiamond = 123; // 시작 다이아 값
+    private InfVal startDiamond = 0; // 시작 다이아 값
 
     public bool consumeAble = false;
 
@@ -61,6 +61,8 @@ public class ResourceManager : MonoBehaviour
         _instance = this;
         // 싱글톤 인스턴스
 
+        startStone = InfVal.Parse("9999M");
+        startDiamond = 9999;
         currentStone = startStone;
         currentDiamond = startDiamond;
         // 자원 시작 값 설정
@@ -84,7 +86,6 @@ public class ResourceManager : MonoBehaviour
             }
             currentStone = value;
 
-            Debug.Log(currentStone);
         }
     }
     // 스톤 프로퍼티
@@ -101,7 +102,6 @@ public class ResourceManager : MonoBehaviour
             }
             currentDiamond = value;
 
-            Debug.Log(currentDiamond);
         }
     }
     // 다이아 프로퍼티
@@ -167,7 +167,11 @@ public class ResourceManager : MonoBehaviour
                 {
                     consumeAble = true;
                 }
-                else Debug.Log($"{resourceType}이 부족합니다.");
+                else 
+                {
+                    consumeAble = false;
+                    Debug.Log($"{resourceType}이 부족합니다.");
+                } 
                 break;
 
             case ResourceType.Diamond:
@@ -175,7 +179,11 @@ public class ResourceManager : MonoBehaviour
                 {
                     consumeAble = true;
                 }
-                else Debug.Log($"{resourceType}이 부족합니다.");
+                else
+                {
+                    consumeAble = false;
+                    Debug.Log($"{resourceType}이 부족합니다.");
+                }
                 break;
         }
     }

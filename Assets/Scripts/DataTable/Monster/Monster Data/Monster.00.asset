@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Monster.00
   m_EditorClassIdentifier: 
   monsterName: Primitive Man
-  monsterHP: 100
-  dropResorceAmount: 100
+  monsterHP: 50
+  dropResorceAmount: 250
