@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Animator animator;
+    public Animator animator;
     private MonsterSettings monsterSettings;
     [HideInInspector]
     public int targerPosition = 0;
 
-
     void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+        BattleModeStart();
+    }
+    public void ResetAnimator()
     {
         animator = GetComponentInChildren<Animator>();
         BattleModeStart();

@@ -58,7 +58,7 @@ public class GameUI : MonoBehaviour
                 GameExitWindow.gameObject.SetActive(true);
         }
 
-        StoneUpgrade();
+        //StoneUpgrade();
     }
 
     public void StoneUpgrade() // 광석 외형 업그레이드
