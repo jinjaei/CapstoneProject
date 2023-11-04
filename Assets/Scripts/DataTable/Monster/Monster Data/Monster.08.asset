@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Monster.08
   m_EditorClassIdentifier: 
   monsterName: Armed Modern Age Man
-  monsterHP: 300
-  dropResorceAmount: 300
+  monsterHP: 12800
+  dropResorceAmount: 64000

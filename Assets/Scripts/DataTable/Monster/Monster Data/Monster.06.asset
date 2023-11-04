@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Monster.06
   m_EditorClassIdentifier: 
   monsterName: Armed Middle Age Man
-  monsterHP: 250
-  dropResorceAmount: 250
+  monsterHP: 3200
+  dropResorceAmount: 16000

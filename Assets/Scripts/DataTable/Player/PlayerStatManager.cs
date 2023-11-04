@@ -45,29 +45,52 @@ public class PlayerStatManager : MonoBehaviour
         // 인스턴스 삭제
     }
 
-    private int playerLevel { get; set; }
-    private float playerPower { get; set; }
-    private float playerCoolDown { get; set; }
+    //public int playerLevel { get; set; }
+    public float playerPower = 10;
+    public float playerCoolDown = 3f;
 
-    public void AddLevel(int amount)
+    /*public void AddLevel(int amount)
     {
         playerLevel += amount;
-    }
+    }*/
 
     public void AddPower(float count)
     {
+        // 공격력 업그레이드
         for(int i=0; i < count; i++)
         {
-            playerPower += playerPower * 0.25f;
+            playerPower += playerPower * 0.005f;
 
         }
     }
 
     public void AddCoolDown(float count)
     {
+        // 공격속도 업그레이드
         for (int i = 0; i < count; i++)
         {
-            playerCoolDown -= playerCoolDown * 0.25f;
+            playerCoolDown -= playerCoolDown * 0.001f;
         }
+    }
+
+    public float GetPowerAmount()
+    {
+        // 강화 될 스탯을 반환
+        float statAmount = playerPower;
+        for (int i = 0; i < EnhanceManager.instance.upgradeCount - 1; i++)
+        {
+            statAmount = statAmount + (statAmount * 0.005f);
+        }
+        return statAmount;
+    }
+    public float GetCooldownAmount()
+    {
+        // 강화 될 스탯을 반환
+        float statAmount = playerCoolDown;
+        for (int i = 0; i < EnhanceManager.instance.upgradeCount - 1; i++)
+        {
+            statAmount = statAmount - (statAmount * 0.001f);
+        }
+        return statAmount;
     }
 }

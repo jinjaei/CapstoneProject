@@ -9,6 +9,13 @@ public class GameUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI StoneText; // 스톤 텍스트
     [SerializeField] TextMeshProUGUI DiaText; // 다이아 텍스트
+    [SerializeField] TextMeshProUGUI powerEnhanceText; // 공격력 강화 텍스트
+    [SerializeField] TextMeshProUGUI cooldownEnhanceText; // 공격속도 강화 텍스트
+    [SerializeField] TextMeshProUGUI powerResourceText; // 공격력 필요자원 텍스트
+    [SerializeField] TextMeshProUGUI cooldownResourceText; // 공격속도 필요자원 텍스트
+
+
+
     [SerializeField] Slider BossHPBar; // 보스 체력 바
     [SerializeField] Slider TimerBar; // 타이머 바
     [SerializeField] Button BossTryButton; // 보스 시도 버튼
@@ -27,6 +34,11 @@ public class GameUI : MonoBehaviour
     public static float time = 30; // 보스 제한 시간 30초
     bool TimerStart = false;
 
+    private void Start()
+    {
+        SettingAPUpgradeText();
+        SettingASUpgradeText();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -103,6 +115,11 @@ public class GameUI : MonoBehaviour
         Level1Upgrade.interactable = false;
         Level10Upgrade.interactable = true;
         Level100Upgrade.interactable = true;
+
+        EnhanceManager.instance.SetUpgradeCount1(); // 1 강화모드
+        SettingAPUpgradeText();
+        SettingASUpgradeText();
+
         SoundManager.instance.PlaySound("ButtonClick");
     }
     public void Level10UpgradeEnabled() // 10 레벨씩 강화 버튼 활성화
@@ -110,6 +127,12 @@ public class GameUI : MonoBehaviour
         Level1Upgrade.interactable = true;
         Level10Upgrade.interactable = false;
         Level100Upgrade.interactable = true;
+
+        EnhanceManager.instance.SetUpgradeCount10(); // 10 강화모드
+        SettingAPUpgradeText();
+        SettingASUpgradeText();
+
+
         SoundManager.instance.PlaySound("ButtonClick");
     }
     public void Level100UpgradeEnabled() // 100 레벨씩 강화 버튼 활성화
@@ -117,7 +140,23 @@ public class GameUI : MonoBehaviour
         Level1Upgrade.interactable = true;
         Level10Upgrade.interactable = true;
         Level100Upgrade.interactable = false;
+
+        EnhanceManager.instance.SetUpgradeCount100(); // 100 강화모드
+        SettingAPUpgradeText();
+        SettingASUpgradeText();
+
+
         SoundManager.instance.PlaySound("ButtonClick");
+    }
+    public void SettingAPUpgradeText()
+    {
+        powerEnhanceText.text = PlayerStatManager.instance.GetPowerAmount().ToString("F2");
+        powerResourceText.text = EnhanceManager.instance.GetResourceIncrease(EnhanceManager.instance.powerResourceAmount).ToString();
+    }
+    public void SettingASUpgradeText()
+    {
+        cooldownEnhanceText.text = PlayerStatManager.instance.GetCooldownAmount().ToString("F2");
+        cooldownResourceText.text = EnhanceManager.instance.GetResourceIncrease(EnhanceManager.instance.cooldownResourceAmount).ToString();
     }
 
     public void GameExit() // 게임 나가기 확인

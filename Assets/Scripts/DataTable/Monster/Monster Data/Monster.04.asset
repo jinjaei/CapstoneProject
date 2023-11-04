@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Monster.04
   m_EditorClassIdentifier: 
   monsterName: Armed Classic Age Man
-  monsterHP: 200
-  dropResorceAmount: 200
+  monsterHP: 800
+  dropResorceAmount: 4000
