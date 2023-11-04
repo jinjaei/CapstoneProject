@@ -13,7 +13,8 @@ public class GameUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI cooldownEnhanceText; // 공격속도 강화 텍스트
     [SerializeField] TextMeshProUGUI powerResourceText; // 공격력 필요자원 텍스트
     [SerializeField] TextMeshProUGUI cooldownResourceText; // 공격속도 필요자원 텍스트
-
+    [SerializeField] TextMeshProUGUI powerLevel; // 공격력 레벨
+    [SerializeField] TextMeshProUGUI cooldownLevel; // 공격속도 레벨
 
 
     [SerializeField] Slider BossHPBar; // 보스 체력 바
@@ -36,6 +37,8 @@ public class GameUI : MonoBehaviour
 
     private void Start()
     {
+        powerLevel.text = PlayerStatManager.instance.PowerLevel.ToString();
+        cooldownLevel.text = PlayerStatManager.instance.CoolDownLevel.ToString();
         SettingAPUpgradeText();
         SettingASUpgradeText();
     }
@@ -117,9 +120,6 @@ public class GameUI : MonoBehaviour
         EnhanceManager.instance.SetUpgradeCount1(); // 1 강화모드
         SettingAPUpgradeText();
         SettingASUpgradeText();
-
-        SoundManager.instance.PlaySound("ButtonClick");
-
     }
     public void Level10UpgradeEnabled() // 10 레벨씩 강화 버튼 활성화
     {
@@ -131,10 +131,6 @@ public class GameUI : MonoBehaviour
         EnhanceManager.instance.SetUpgradeCount10(); // 10 강화모드
         SettingAPUpgradeText();
         SettingASUpgradeText();
-
-
-        SoundManager.instance.PlaySound("ButtonClick");
-
     }
     public void Level100UpgradeEnabled() // 100 레벨씩 강화 버튼 활성화
     {
@@ -146,12 +142,17 @@ public class GameUI : MonoBehaviour
         EnhanceManager.instance.SetUpgradeCount100(); // 100 강화모드
         SettingAPUpgradeText();
         SettingASUpgradeText();
-
-
-        SoundManager.instance.PlaySound("ButtonClick");
-
-
     }
+
+    public void SettingAPLevelText() // 공격력 레벨 표시
+    {
+        powerLevel.text = PlayerStatManager.instance.GetPowerLevelAmount().ToString();
+    }
+    public void SettingASLevelText() // 공격속도 레벨 표시
+    {
+        cooldownLevel.text = PlayerStatManager.instance.GetCoolDownLevelAmount().ToString();
+    }
+
     public void SettingAPUpgradeText()
     {
         powerEnhanceText.text = PlayerStatManager.instance.GetPowerAmount().ToString("F2");
