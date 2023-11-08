@@ -26,8 +26,6 @@ public class GameUI : MonoBehaviour
     [SerializeField] GameObject StoneUI; // 광석 UI
     [SerializeField] GameObject EnhanceUI; // 강화 UI
 
-    [SerializeField] Button StoneLv2; // 광석 2레벨(수정석)
-
     [SerializeField] Button Level1Upgrade; // 1 레벨씩 강화
     [SerializeField] Button Level10Upgrade; // 10 레벨씩 강화
     [SerializeField] Button Level100Upgrade; // 100 레벨씩 강화
@@ -57,14 +55,6 @@ public class GameUI : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
                 GameExitWindow.gameObject.SetActive(true);
         }
-
-        //StoneUpgrade();
-    }
-
-    public void StoneUpgrade() // 광석 외형 업그레이드
-    {
-        if (ResourceManager.instance.Diamond >= 100)
-            StoneLv2.interactable = true;
     }
 
     public void NormalEnemyHunting() // 일반 몬스터 사냥 상태
