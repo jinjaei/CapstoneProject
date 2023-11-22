@@ -8,46 +8,46 @@ public class ToastMessage : MonoBehaviour
     {
         get
         {
-            if (instance == null) // ц┐б╪ц┘б╘ 1 : ц─ц▌б╫б╨ц┘ц▐б╫б╨б╟б║ б╬ц╦б╢ц┌ б╟ц╕б©ц╛
+            if (instance == null) // ц╪е╘ 1 : юн╫╨ео╫╨╟║ ╬Ь╢б ╟Ф©Л
                 CheckExsistence();
 
             return instance;
         }
     }
 
-    // б╫ц▄б╠ц⌡ц┘ц╕ ц─ц▌б╫б╨ц┘ц▐б╫б╨
+    // ╫л╠шеФ юн╫╨ео╫╨
     private static ToastMessage instance;
 
-    // б╫ц▄б╠ц⌡ц┘ц╕ ц─ц▌б╫б╨ц┘ц▐б╫б╨ ц│б╦ц─ц╖ б©б╘б╨ц▌ ц┬б╝ц─ц▌ (ц┐б╪ц┘б╘ 2)
+    // ╫л╠шеФ юн╫╨ео╫╨ а╦юГ ©╘╨н х╝юн (ц╪е╘ 2)
     private static void CheckExsistence()
     {
-        // б╫ц▄б╠ц⌡ц┘ц╕ б╟ц▀б╩ц╤
+        // ╫л╠шеФ ╟к╩Ж
         instance = FindObjectOfType<ToastMessage>();
 
-        // ц─ц▌б╫б╨ц┘ц▐б╫б╨ б╟б║ц│ц╦ б©ц─б╨ц╙ц│б╖ц├б╝б╟б║ ц│б╦ц─ц╖ц┤ц▐ц│ц╤ б╬ц┼ц─б╩ б╟ц╕б©ц╛, б╨цЁ б©ц─б╨ц╙ц│б╖ц├б╝б╦б╕ ц─ц⌠ц─ц┤б╥ц▌ б╩ц╫б╪б╨ц┤ц▐б©б╘ ц─ц▌б╫б╨ц┘ц▐б╫б╨ ц┤ц▓б╢ц╖
+        // юн╫╨ео╫╨ ╟║аЬ ©ю╨Йа╖ф╝╟║ а╦юГгоаЖ ╬йю╩ ╟Ф©Л, ╨С ©ю╨Йа╖ф╝╦╕ юсюг╥н ╩Щ╪╨го©╘ юн╫╨ео╫╨ гр╢Г
         if (instance == null)
         {
-            // б╨цЁ б╟ц■ц─ц⌠ б©ц─б╨ц╙ц│б╖ц├б╝ б╩ц╫б╪б╨
+            // ╨С ╟тюс ©ю╨Йа╖ф╝ ╩Щ╪╨
             GameObject container = new GameObject("AndroidToast Singleton Container");
 
-            // б╟ц■ц─ц⌠ б©ц─б╨ц╙ц│б╖ц├б╝б©б║ ц┘б╛б╥б║б╫б╨ ц└ц└ц├ц╥бЁц█ц├б╝ ц┐ц÷б╟б║ ц┬ц└ ц─ц▌б╫б╨ц┘ц▐б╫б╨ ц┤ц▓б╢ц╖
+            // ╟тюс ©ю╨Йа╖ф╝©║ е╛╥║╫╨ ддфВЁмф╝ цъ╟║ хд юн╫╨ео╫╨ гр╢Г
             instance = container.AddComponent<ToastMessage>();
         }
     }
 
     private void CheckInstance()
     {
-        // б╫ц▄б╠ц⌡ц┘ц╕ ц─ц▌б╫б╨ц┘ц▐б╫б╨б╟б║ ц│б╦ц─ц╖ц┤ц▐ц│ц╤ б╬ц┼б╬ц▓ц─б╩ б╟ц╕б©ц╛, б╨б╩ц─ц▌ц─б╦б╥ц▌ ц┐ц┼б╠ц╒ц┬б╜
+        // ╫л╠шеФ юн╫╨ео╫╨╟║ а╦юГгоаЖ ╬й╬рю╩ ╟Ф©Л, ╨╩юню╦╥н цй╠Бх╜
         if (instance == null)
             instance = this;
 
-        // б╫ц▄б╠ц⌡ц┘ц╕ ц─ц▌б╫б╨ц┘ц▐б╫б╨б╟б║ ц│б╦ц─ц╖ц┤ц▐б╢ц┌б╣б╔, б╨б╩ц─ц▌ц─ц▄ б╬ц├б╢ц▓ б╟ц╕б©ц╛, б╫б╨б╫б╨б╥ц▌(ц└ц└ц├ц╥бЁц█ц├б╝)б╦б╕ ц├ц└б╠б╚
+        // ╫л╠шеФ юн╫╨ео╫╨╟║ а╦юГго╢б╣╔, ╨╩юнюл ╬ф╢р ╟Ф©Л, ╫╨╫╨╥н(ддфВЁмф╝)╦╕ фд╠╚
         if (instance != null && instance != this)
         {
-            Debug.Log("ц─ц▄б╧ц▄ AndroidToast б╫ц▄б╠ц⌡ц┘ц╕ц─ц▄ ц│б╦ц─ц╖ц┤ц▐б╧ц┤б╥ц▌ б©ц─б╨ц╙ц│б╖ц├б╝б╦б╕ ц├ц└б╠б╚ц┤ц∙б╢ц▐б╢ц≥.");
+            Debug.Log("юл╧л AndroidToast ╫л╠шеФюл а╦юГго╧г╥н ©ю╨Йа╖ф╝╦╕ фд╠╚гу╢о╢ы.");
             Destroy(this);
 
-            // б╦б╦б╬ц═ б╟ц■ц─ц⌠ б©ц─б╨ц╙ц│б╖ц├б╝б©б║ ц└ц└ц├ц╥бЁц█ц├б╝б╟б║ ц─ц б╫ц┘б╦б╦ ц─ц√б╬ц╨б╢ц≥б╦ц╘, б╟ц■ц─ц⌠ б©ц─б╨ц╙ц│б╖ц├б╝б╣б╣ ц├ц└б╠б╚
+            // ╦╦╬Ю ╟тюс ©ю╨Йа╖ф╝©║ ддфВЁмф╝╟║ юз╫е╦╦ юж╬З╢ы╦И, ╟тюс ©ю╨Йа╖ф╝╣╣ фд╠╚
             var components = gameObject.GetComponents<Component>();
 
             if (components.Length <= 2)
@@ -62,9 +62,9 @@ public class ToastMessage : MonoBehaviour
 
     public enum ToastLength
     {
-        /// <summary> б╬ц═ 2.5ц┐ц┼ </summary>
+        /// <summary> ╬Ю 2.5цй </summary>
         Short,
-        /// <summary> б╬ц═ 4ц┐ц┼ </summary>
+        /// <summary> ╬Ю 4цй </summary>
         Long
     };
 
@@ -86,7 +86,7 @@ public class ToastMessage : MonoBehaviour
     }
 #endif
 
-    /// <summary> б╬ц┬б╣ц╔б╥ц▌ц─ц▄б╣ц╔ ц┘ц╓б╫б╨ц├б╝ б╦ц·б╫ц┐ц│ц╤ ц┤б╔б╫ц┐ц┤ц▐б╠ц╒ </summary>
+    /// <summary> ╬х╣Е╥нюл╣Е еД╫╨ф╝ ╦ч╫цаЖ г╔╫цго╠Б </summary>
     [System.Diagnostics.Conditional("UNITY_ANDROID")]
     public void ShowToastMessage(string message, ToastLength length = ToastLength.Short)
     {
@@ -107,7 +107,7 @@ public class ToastMessage : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    /* ц─б╞б╢ц▐ц├б╪ б©б║б╣ц╟ц┘ц█ IMGUIб╦б╕ ц┘ц╚ц┤ц≤ ц┘ц╓б╫б╨ц├б╝ б╦ц·б╫ц┐ц│ц╤ ц┤б╔б╫ц┐ б╦ц╟б╧ц╕ц┤ц▐б╠ц╒ */
+    /* ю╞╢оф╪ ©║╣Пем IMGUI╦╕ еКгь еД╫╨ф╝ ╦ч╫цаЖ г╔╫ц ╦П╧Фго╠Б */
 
     private GUIStyle toastStyle;
     private void OnGUI()
