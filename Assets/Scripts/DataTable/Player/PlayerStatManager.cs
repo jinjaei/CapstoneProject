@@ -61,7 +61,7 @@ public class PlayerStatManager : MonoBehaviour
         // 공격력 업그레이드
         for(int i=0; i < count; i++)
         {
-            playerPower += playerPower * 0.005f;
+            playerPower += playerPower * 0.001f;
 
         }
     }
@@ -71,7 +71,7 @@ public class PlayerStatManager : MonoBehaviour
         // 공격속도 업그레이드
         for (int i = 0; i < count; i++)
         {
-            playerCoolDown -= playerCoolDown * 0.001f;
+            playerCoolDown -= playerCoolDown * 0.0005f;
         }
     }
 
@@ -100,7 +100,7 @@ public class PlayerStatManager : MonoBehaviour
         float statAmount = playerPower;
         for (int i = 0; i < EnhanceManager.instance.upgradeCount - 1; i++)
         {
-            statAmount = statAmount + (statAmount * 0.005f);
+            statAmount = statAmount + (statAmount * 0.001f);
         }
         return statAmount;
     }
@@ -110,7 +110,7 @@ public class PlayerStatManager : MonoBehaviour
         float statAmount = playerCoolDown;
         for (int i = 0; i < EnhanceManager.instance.upgradeCount - 1; i++)
         {
-            statAmount = statAmount - (statAmount * 0.001f);
+            statAmount = statAmount - (statAmount * 0.0005f);
         }
         return statAmount;
     }

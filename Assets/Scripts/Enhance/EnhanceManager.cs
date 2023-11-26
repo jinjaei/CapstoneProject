@@ -53,7 +53,7 @@ public class EnhanceManager : MonoBehaviour
     {
         InfVal increaseAmount = powerResourceAmount;
         //공격력 증가 함수
-        for(int i=0; i<upgradeCount-1; i++)
+        for(int i=0; i<upgradeCount; i++)
         {
             increaseAmount = increaseAmount + (increaseAmount * 0.01);
         }
@@ -63,7 +63,6 @@ public class EnhanceManager : MonoBehaviour
             powerResourceAmount = increaseAmount;
             ResourceManager.instance.RemoveResource(ResourceManager.ResourceType.Stone, powerResourceAmount);
             PlayerStatManager.instance.AddPower(upgradeCount);
-            PowerResourceIncrease(powerResourceAmount);
 
             GameUI gameUI = FindObjectOfType<GameUI>();
             gameUI.SettingAPUpgradeText(); // UI 갱신
@@ -73,7 +72,7 @@ public class EnhanceManager : MonoBehaviour
     {
         InfVal increaseAmount = cooldownResourceAmount;
         //공격속도 증가 함수
-        for (int i = 0; i < upgradeCount-1; i++)
+        for (int i = 0; i < upgradeCount; i++)
         {
             increaseAmount = increaseAmount + (increaseAmount * 0.01);
         }
@@ -83,7 +82,6 @@ public class EnhanceManager : MonoBehaviour
             cooldownResourceAmount = increaseAmount;
             ResourceManager.instance.RemoveResource(ResourceManager.ResourceType.Stone, cooldownResourceAmount);
             PlayerStatManager.instance.AddCoolDown(upgradeCount);
-            CooldownResourceIncrease(cooldownResourceAmount);
 
             GameUI gameUI = FindObjectOfType<GameUI>();
             gameUI.SettingASUpgradeText(); // UI 갱신
@@ -117,7 +115,7 @@ public class EnhanceManager : MonoBehaviour
     {
         // 강화에 필요한 자원을 반환
         InfVal increaseAmount = resourceType;
-        for (int i = 0; i < upgradeCount - 1; i++)
+        for (int i = 0; i < upgradeCount; i++)
         {
             increaseAmount = increaseAmount + (increaseAmount * 0.01);
         }
