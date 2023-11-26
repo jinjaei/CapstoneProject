@@ -43,14 +43,24 @@ public class StageManager : MonoBehaviour
         applicationQuitting = true;
         // 인스턴스 삭제
     }
-
+    private PlayerController playerController;
     public Transform[] monsterGeneratePosition = new Transform[5]; // 몬스터 포지션
     public SpriteRenderer[] stageBackgroundMap; // 스테이지 맵 배경이미지
     public StageDataTable[] stageDataTables; // 스테이지 데이터테이블 변수
 
     public MonsterSettings[] currentMonsterData = new MonsterSettings[5]; // 현재 몬스터의 데이터
 
-    private int stageLevel = 1; // 스테이지 레벨
+    public bool bossMonsterAble = true; // 보스 몬스터 소환 가능상태
+
+    [HideInInspector]
+    public int stageLevel = 0; // 스테이지 레벨
+    [HideInInspector]
+    public float bossMonsterHP = 0; // 보스 몬스터 HP
+    [HideInInspector]
+    public float bossMonsterDropResource = 0; // 보스 몬스터 HP
+
+
+
     //private int mapLevel = 0; // 맵 레벨
 
 
@@ -59,6 +69,7 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
+        playerController = FindObjectOfType<PlayerController>();
         for (int i = 0; i < monsterGeneratePosition.Length; i++)
         {
             // monsterGeneratePosition에 Transform컴포넌트 할당
@@ -73,11 +84,7 @@ public class StageManager : MonoBehaviour
         // 스테이지 구성
         DisplayStageLevelText();
         SetMonster();
-    }
-    public void MovingNextStage()
-    {
-        // 다음 스테이지로 이동
-        
+        bossMonsterAble = true;
     }
     private void DisplayStageLevelText()
     {
@@ -91,23 +98,52 @@ public class StageManager : MonoBehaviour
         for (int i = 0; i < monsterGeneratePosition.Length; i++)
         {
             GameObject monster = Instantiate(stageDataTables[stageLevel].monsterPrefab[i], monsterGeneratePosition[i].GetChild(1).GetChild(i));
+            MonsterDataTable monsterData = monster.GetComponent<MonsterSettings>().monsterDataTable;
+            bossMonsterHP += monsterData.monsterHP;
+            bossMonsterDropResource += (monsterData.dropResorceAmount * 2);
         }
     }
 
     private void DeleteMonster()
     {
         // 현재 스테이지의 몬스터 전부 삭제
-        for (int i = 0; i < monsterGeneratePosition.Length; i++)
+        for (int i = playerController.targerPosition; i < monsterGeneratePosition.Length; i++)
         {
-            GameObject monster = monsterGeneratePosition[i].GetChild(1).GetChild(i).gameObject;
-            Destroy(monster);
+            GameObject monster = monsterGeneratePosition[i].GetChild(1).GetChild(i).GetChild(0).gameObject;
+            if(monster!=null) Destroy(monster);
         }
     }
 
     public void EndBattleMode()
     {
-        PlayerController playerController = FindObjectOfType<PlayerController>();
+        // 몬스터 사냥 종료
         playerController.BattleModeEnd();
     }
+
+    public void TryBossStage()
+    {
+        // 보스사냥 시도
+        if (bossMonsterAble)
+        {
+            DeleteMonster();
+            GameObject bossMonster = Instantiate(stageDataTables[stageLevel].bossMonsterPrefab, monsterGeneratePosition[4].GetChild(1).GetChild(4));
+            playerController.BattleModeEnd();
+            playerController.BossBattleModeStart();
+        }
+    }
+
+    public void BossModeFailed()
+    {
+        // 보스사냥 실패 시 처리
+        BossMonsterController bossMonsterController = FindObjectOfType<BossMonsterController>();
+        Destroy(bossMonsterController.gameObject);
+        SetStage();
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        playerController.targerPosition = 0;
+        playerController.BattleModeStart();
+    }
+
+
+
 
 }

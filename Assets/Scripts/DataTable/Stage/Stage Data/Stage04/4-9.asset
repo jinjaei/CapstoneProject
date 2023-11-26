@@ -20,3 +20,4 @@ MonoBehaviour:
   - {fileID: 6671429394328754322, guid: 33b7aa8c1cf101940ad17b0ccb934e65, type: 3}
   - {fileID: 6671429394328754322, guid: 33b7aa8c1cf101940ad17b0ccb934e65, type: 3}
   - {fileID: 6671429394328754322, guid: 33b7aa8c1cf101940ad17b0ccb934e65, type: 3}
+  bossMonsterPrefab: {fileID: 2601882341410713337, guid: cb008bdfa83038b41af982becf6b16ff, type: 3}

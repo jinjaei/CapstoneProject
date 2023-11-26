@@ -17,7 +17,7 @@ public class GameUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI cooldownLevel; // 공격속도 레벨
 
 
-    [SerializeField] Slider BossHPBar; // 보스 체력 바
+    [SerializeField] public Slider BossHPBar; // 보스 체력 바
     [SerializeField] Slider TimerBar; // 타이머 바
     [SerializeField] Button BossTryButton; // 보스 시도 버튼
     [SerializeField] Image SettingWindow; // 설정 창
@@ -47,7 +47,11 @@ public class GameUI : MonoBehaviour
         {
             Timer();
             if (TimerBar.value == 0)
+            {
+                PlayerController playerController = FindObjectOfType<PlayerController>();
+                playerController.BossBattleModeEnd();
                 BossFailWindow.gameObject.SetActive(true);
+            }
         }
 
         if (Application.platform == RuntimePlatform.Android)
@@ -63,9 +67,17 @@ public class GameUI : MonoBehaviour
         BossTryButton.gameObject.SetActive(true);
         BossHPBar.gameObject.SetActive(false);
         TimerBar.gameObject.SetActive(false);
-        BossFailWindow.gameObject.SetActive(false);
+        BossFailWindow.gameObject.SetActive(false); 
     }
 
+    public void MovingStage()
+    {
+        TimerStart = false;
+        BossHPBar.gameObject.SetActive(false);
+        TimerBar.gameObject.SetActive(false);
+    }
+
+    
     public void BossTry() // 보스 트라이 상태
     {
         time = 30;
