@@ -61,6 +61,8 @@ public class RegisterAccount : LoginBase
             if ( callback.IsSuccess() )
             {
                 SetMesssage($"계정 생성 성공. {inputFieldID.text}님 환영합니다.");
+
+                BackendGameData.Instance.GameDataInsert();
             }
 
             // 계정 생성 실패
@@ -90,15 +92,5 @@ public class RegisterAccount : LoginBase
                 }    
             }
         });
-    }
-
-    private void Start()
-    {
-        CancelButton.onClick.AddListener(OnClickCancelButton);
-    }
-
-    private void OnClickCancelButton()
-    {
-        SceneManager.LoadScene("LoginScene");
     }
 }

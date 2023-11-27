@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using BackEnd;
+using UnityEngine.SceneManagement;
 
 public class Login : LoginBase
 {
@@ -51,6 +52,8 @@ public class Login : LoginBase
             if (callback.IsSuccess() )
             {
                 SetMesssage($"{inputFieldID.text}님 환영합니다.");
+
+                SceneManager.LoadScene("GameScene");
             }
 
             //로그인 실패
