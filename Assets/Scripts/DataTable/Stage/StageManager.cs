@@ -73,12 +73,6 @@ public class StageManager : MonoBehaviour
             monsterGeneratePosition[i] = GetComponent<Transform>();
         }
 
-        BackendGameData.Instance.onGameDataLoadEvent.AddListener(OnGameDataLoad); // 由ъㅻ 異媛
-        BackendGameData.Instance.GameDataLoad(); // ㅻ 踰 寃 곗댄 濡
-    }
-
-    private void OnGameDataLoad()
-    {
         SetStage();
     }
 
