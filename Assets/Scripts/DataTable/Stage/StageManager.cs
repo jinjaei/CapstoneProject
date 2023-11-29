@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -32,26 +32,26 @@ public class StageManager : MonoBehaviour
         }
     }
     private static bool applicationQuitting = false;
-    // ½Ì±ÛÅæ
+    // Â½ÃŒÂ±Ã›Ã…Ã¦
     private void Awake()
     {
         _instance = this;
-        // ½Ì±ÛÅæ ÀÎ½ºÅÏ½º
+        // Â½ÃŒÂ±Ã›Ã…Ã¦ Ã€ÃÂ½ÂºÃ…ÃÂ½Âº
     }
     private void OnDestroy()
     {
         applicationQuitting = true;
-        // ÀÎ½ºÅÏ½º »èÁ¦
+        // Ã€ÃÂ½ÂºÃ…ÃÂ½Âº Â»Ã¨ÃÂ¦
     }
 
-    public Transform[] monsterGeneratePosition = new Transform[5]; // ¸ó½ºÅÍ Æ÷Áö¼Ç
-    public SpriteRenderer[] stageBackgroundMap; // ½ºÅ×ÀÌÁö ¸Ê ¹è°æÀÌ¹ÌÁö
-    public StageDataTable[] stageDataTables; // ½ºÅ×ÀÌÁö µ¥ÀÌÅÍÅ×ÀÌºí º¯¼ö
+    public Transform[] monsterGeneratePosition = new Transform[5]; // Â¸Ã³Â½ÂºÃ…Ã Ã†Ã·ÃÃ¶Â¼Ã‡
+    public SpriteRenderer[] stageBackgroundMap; // Â½ÂºÃ…Ã—Ã€ÃŒÃÃ¶ Â¸ÃŠ Â¹Ã¨Â°Ã¦Ã€ÃŒÂ¹ÃŒÃÃ¶
+    public StageDataTable[] stageDataTables; // Â½ÂºÃ…Ã—Ã€ÃŒÃÃ¶ ÂµÂ¥Ã€ÃŒÃ…ÃÃ…Ã—Ã€ÃŒÂºÃ­ ÂºÂ¯Â¼Ã¶
 
-    public MonsterSettings[] currentMonsterData = new MonsterSettings[5]; // ÇöÀç ¸ó½ºÅÍÀÇ µ¥ÀÌÅÍ
+    public MonsterSettings[] currentMonsterData = new MonsterSettings[5]; // Ã‡Ã¶Ã€Ã§ Â¸Ã³Â½ÂºÃ…ÃÃ€Ã‡ ÂµÂ¥Ã€ÃŒÃ…Ã
 
-    private int stageLevel = 1; // ½ºÅ×ÀÌÁö ·¹º§
-    //private int mapLevel = 0; // ¸Ê ·¹º§
+    private int stageLevel = 1; // Â½ÂºÃ…Ã—Ã€ÃŒÃÃ¶ Â·Â¹ÂºÂ§
+    //private int mapLevel = 0; // Â¸ÃŠ Â·Â¹ÂºÂ§
 
 
     public TextMeshProUGUI stageLevelText;
@@ -61,33 +61,39 @@ public class StageManager : MonoBehaviour
     {
         for (int i = 0; i < monsterGeneratePosition.Length; i++)
         {
-            // monsterGeneratePosition¿¡ TransformÄÄÆ÷³ÍÆ® ÇÒ´ç
+            // monsterGeneratePositionÂ¿Â¡ TransformÃ„Ã„Ã†Ã·Â³ÃÃ†Â® Ã‡Ã’Â´Ã§
             monsterGeneratePosition[i] = GetComponent<Transform>();
         }
 
-        SetStage(); // ½ºÅ×ÀÌÁö ±¸¼º
+        BackendGameData.Instance.onGameDataLoadEvent.AddListener(OnGameDataLoad); // ë¦¬ìŠ¤ë„ˆ ì¶”ê°€
+        BackendGameData.Instance.GameDataLoad(); // ë’¤ë ì„œë²„ì—ì„œ ê²Œì„ ë°ì´í„° ë¡œë“œ
+    }
+
+    private void OnGameDataLoad()
+    {
+        SetStage();
     }
 
     public void SetStage()
     {
-        // ½ºÅ×ÀÌÁö ±¸¼º
+        // Â½ÂºÃ…Ã—Ã€ÃŒÃÃ¶ Â±Â¸Â¼Âº
         DisplayStageLevelText();
         SetMonster();
     }
     public void MovingNextStage()
     {
-        // ´ÙÀ½ ½ºÅ×ÀÌÁö·Î ÀÌµ¿
+        // Â´Ã™Ã€Â½ Â½ÂºÃ…Ã—Ã€ÃŒÃÃ¶Â·Ã Ã€ÃŒÂµÂ¿
         
     }
     private void DisplayStageLevelText()
     {
-        // ½ºÅ×ÀÌÁö¿¡ ¸Â´Â ÅØ½ºÆ®¸¦ Ç¥½Ã
+        // Â½ÂºÃ…Ã—Ã€ÃŒÃÃ¶Â¿Â¡ Â¸Ã‚Â´Ã‚ Ã…Ã˜Â½ÂºÃ†Â®Â¸Â¦ Ã‡Â¥Â½Ãƒ
         stageLevelText.text = "STAGE "+stageDataTables[stageLevel].mainStageNumber.ToString() + "-" + stageDataTables[stageLevel].subStageNumber.ToString();
     }
 
     private void SetMonster()
     {
-        // ½ºÅ×ÀÌÁö¿¡ ¸Â´Â ¸ó½ºÅÍ¸¦ ¹èÄ¡ ÈÄ µ¥ÀÌÅÍ ¼¼ÆÃ
+        // Â½ÂºÃ…Ã—Ã€ÃŒÃÃ¶Â¿Â¡ Â¸Ã‚Â´Ã‚ Â¸Ã³Â½ÂºÃ…ÃÂ¸Â¦ Â¹Ã¨Ã„Â¡ ÃˆÃ„ ÂµÂ¥Ã€ÃŒÃ…Ã Â¼Â¼Ã†Ãƒ
         for (int i = 0; i < monsterGeneratePosition.Length; i++)
         {
             GameObject monster = Instantiate(stageDataTables[stageLevel].monsterPrefab[i], monsterGeneratePosition[i].GetChild(1).GetChild(i));
@@ -96,7 +102,7 @@ public class StageManager : MonoBehaviour
 
     private void DeleteMonster()
     {
-        // ÇöÀç ½ºÅ×ÀÌÁöÀÇ ¸ó½ºÅÍ ÀüºÎ »èÁ¦
+        // Ã‡Ã¶Ã€Ã§ Â½ÂºÃ…Ã—Ã€ÃŒÃÃ¶Ã€Ã‡ Â¸Ã³Â½ÂºÃ…Ã Ã€Ã¼ÂºÃ Â»Ã¨ÃÂ¦
         for (int i = 0; i < monsterGeneratePosition.Length; i++)
         {
             GameObject monster = monsterGeneratePosition[i].GetChild(1).GetChild(i).gameObject;

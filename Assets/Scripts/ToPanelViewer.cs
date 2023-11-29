@@ -1,18 +1,27 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
-public class NewBehaviourScript : MonoBehaviour
+public class ToPanelViewer : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI textNickname;
     [SerializeField]
-    private TextMeshProUGUI textehfrkfn; //돌가루
+    private TextMeshProUGUI textStone;          //돌가루
     [SerializeField]
-    private TextMeshProUGUI textrhdrurfur; //스테이지
+    private TextMeshProUGUI textDiamond;	    // 현제 보유한 보석
     [SerializeField]
-    private TextMeshProUGUI textrhdrurthrhe; //공격속도
+    private TextMeshProUGUI textSpeed;		    // 공격속도
     [SerializeField]
-    private TextMeshProUGUI textqhtjr; //보석
+    private TextMeshProUGUI textPower;			// 공격력
+    [SerializeField]
+    private TextMeshProUGUI textSpeedLevel;		// 공격속도 레벨
+    [SerializeField]
+    private TextMeshProUGUI textPowerLevel;     // 공격력 레벨
+    [SerializeField]
+    private TextMeshProUGUI textPRA;            // 공격력 강화시 감소시킬 자원량
+    [SerializeField]
+    private TextMeshProUGUI textSPA;           // 공격속도 강화시 감소시킬 자원량
 
 
     private void Awake()
@@ -27,9 +36,13 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void UpdateGameData()
     {
-        //textehfrkfn.text = $"{ BackendGameData.Instance.UserGameData.ehfrkfn}"; // 돌가루
-        //textehfrkfn.text = $"{ BackendGameData.Instance.UserGameData.ehfrkfn}"; // 공격속도
-        //textehfrkfn.text = $"{ BackendGameData.Instance.UserGameData.ehfrkfn}"; // 보석
-        //textehfrkfn.text = $"{ BackendGameData.Instance.UserGameData.ehfrkfn}"; // 필요한 데이터 값 추가
+        textStone.text = $"{ BackendGameData.Instance.UserGameData.Stone}";                 // 돌가루
+        textDiamond.text = $"{ BackendGameData.Instance.UserGameData.Diamond}";             // 다이아
+        textSpeed.text = $"{ BackendGameData.Instance.UserGameData.Speed}";                 // 공격속도
+        textPower.text = $"{ BackendGameData.Instance.UserGameData.Power}";                 // 공격력
+        textSpeedLevel.text = $"{ BackendGameData.Instance.UserGameData.SpeedLevel}";       // 공격속도 레벨
+        textPowerLevel.text = $"{ BackendGameData.Instance.UserGameData.PowerLevel}";       // 공격력 래밸
+        textPRA.text = $"{ BackendGameData.Instance.UserGameData.PRA}";                     //강화시 감소시킬 자원량
+        textSPA.text = $"{ BackendGameData.Instance.UserGameData.SPA}";                     //강화시 감소시킬 자원량
     }
 }

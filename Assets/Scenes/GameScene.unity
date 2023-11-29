@@ -11594,6 +11594,7 @@ GameObject:
   - component: {fileID: 1366528501}
   - component: {fileID: 1366528500}
   - component: {fileID: 1366528504}
+  - component: {fileID: 1366528505}
   m_Layer: 5
   m_Name: GameUI
   m_TagString: Untagged
@@ -11721,6 +11722,27 @@ MonoBehaviour:
   Level1Upgrade: {fileID: 211087261}
   Level10Upgrade: {fileID: 766436502}
   Level100Upgrade: {fileID: 448324748}
+--- !u!114 &1366528505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366528499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ac291969aa9ae45becad4e3e8c6c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textNickname: {fileID: 0}
+  textStone: {fileID: 758976403}
+  textDiamond: {fileID: 2006060945}
+  textSpeed: {fileID: 921470032}
+  textPower: {fileID: 2139506130}
+  textSpeedLevel: {fileID: 117139192}
+  textPowerLevel: {fileID: 1817432969}
+  textPRA: {fileID: 454861994}
+  textSPA: {fileID: 398383665}
 --- !u!1 &1376514827
 GameObject:
   m_ObjectHideFlags: 0

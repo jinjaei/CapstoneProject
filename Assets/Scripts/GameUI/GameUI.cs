@@ -156,6 +156,8 @@ public class GameUI : MonoBehaviour
 
     public void GameExit() // 게임 나가기 확인
     {
+        //BackendGameData.Instance.OverwritePlayerStats(PlayerStatManager.instance.PowerLevel, PlayerStatManager.instance.CoolDownLevel);
+
         Application.Quit();
     }
     public void WindowExit() // 설정 창 끄기 및 게임 나가기 취소
