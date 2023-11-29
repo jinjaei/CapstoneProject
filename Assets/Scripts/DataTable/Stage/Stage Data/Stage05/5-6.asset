@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96ee24c0714833043972c0b59977f9d1, type: 3}
-  m_Name: 4-5
+  m_Name: 5-6
   m_EditorClassIdentifier: 
   mainStageNumber: 5
-  subStageNumber: 5
+  subStageNumber: 6
   monsterPrefab:
   - {fileID: 6374259723853622666, guid: b8cffac2344df7241b9eb0161269c7d7, type: 3}
   - {fileID: 6374259723853622666, guid: b8cffac2344df7241b9eb0161269c7d7, type: 3}
   - {fileID: 6374259723853622666, guid: b8cffac2344df7241b9eb0161269c7d7, type: 3}
-  - {fileID: 6671429394328754322, guid: 33b7aa8c1cf101940ad17b0ccb934e65, type: 3}
   - {fileID: 6374259723853622666, guid: b8cffac2344df7241b9eb0161269c7d7, type: 3}
+  - {fileID: 6374259723853622666, guid: b8cffac2344df7241b9eb0161269c7d7, type: 3}
+  bossMonsterPrefab: {fileID: 2601882341410713337, guid: cb008bdfa83038b41af982becf6b16ff, type: 3}

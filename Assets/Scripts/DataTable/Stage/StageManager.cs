@@ -1,4 +1,4 @@
-﻿using System.Collections;
+癤using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -32,41 +32,51 @@ public class StageManager : MonoBehaviour
         }
     }
     private static bool applicationQuitting = false;
-    // ½Ì±ÛÅæ
+    // 쩍짹챈
     private void Awake()
     {
         _instance = this;
-        // ½Ì±ÛÅæ ÀÎ½ºÅÏ½º
+        // 쩍짹챈 쩍쨘쩍쨘
     }
     private void OnDestroy()
     {
         applicationQuitting = true;
-        // ÀÎ½ºÅÏ½º »èÁ¦
+        // 쩍쨘쩍쨘 쨩챔짝
     }
+    private PlayerController playerController;
+    public Transform[] monsterGeneratePosition = new Transform[5]; // 몬스터 포지션
+    public SpriteRenderer[] stageBackgroundMap; // 스테이지 맵 배경이미지
+    public StageDataTable[] stageDataTables; // 스테이지 데이터테이블 변수
 
-    public Transform[] monsterGeneratePosition = new Transform[5]; // ¸ó½ºÅÍ Æ÷Áö¼Ç
-    public SpriteRenderer[] stageBackgroundMap; // ½ºÅ×ÀÌÁö ¸Ê ¹è°æÀÌ¹ÌÁö
-    public StageDataTable[] stageDataTables; // ½ºÅ×ÀÌÁö µ¥ÀÌÅÍÅ×ÀÌºí º¯¼ö
+    public MonsterSettings[] currentMonsterData = new MonsterSettings[5]; // 철챌 쨍처쩍쨘 쨉짜
 
-    public MonsterSettings[] currentMonsterData = new MonsterSettings[5]; // ÇöÀç ¸ó½ºÅÍÀÇ µ¥ÀÌÅÍ
+    public bool bossMonsterAble = true; // 보스 몬스터 소환 가능상태
 
-    private int stageLevel = 1; // ½ºÅ×ÀÌÁö ·¹º§
-    //private int mapLevel = 0; // ¸Ê ·¹º§
+    [HideInInspector]
+    public int stageLevel = 0; // 스테이지 레벨
+    [HideInInspector]
+    public float bossMonsterHP = 0; // 보스 몬스터 HP
+    [HideInInspector]
+    public float bossMonsterDropResource = 0; // 보스 몬스터 HP
 
+
+
+    //private int mapLevel = 0; // 맵 레벨
 
     public TextMeshProUGUI stageLevelText;
     public Transform mainMap;
 
     void Start()
     {
+        playerController = FindObjectOfType<PlayerController>();
         for (int i = 0; i < monsterGeneratePosition.Length; i++)
         {
-            // monsterGeneratePosition¿¡ TransformÄÄÆ÷³ÍÆ® ÇÒ´ç
+            // monsterGeneratePosition쩔징 Transform첨쨀짰 쨈챌
             monsterGeneratePosition[i] = GetComponent<Transform>();
         }
 
-        BackendGameData.Instance.onGameDataLoadEvent.AddListener(OnGameDataLoad); // 리스너 추가
-        BackendGameData.Instance.GameDataLoad(); // 뒤끝 서버에서 게임 데이터 로드
+        BackendGameData.Instance.onGameDataLoadEvent.AddListener(OnGameDataLoad); // 由ъㅻ 異媛
+        BackendGameData.Instance.GameDataLoad(); // ㅻ 踰 寃 곗댄 濡
     }
 
     private void OnGameDataLoad()
@@ -76,44 +86,69 @@ public class StageManager : MonoBehaviour
 
     public void SetStage()
     {
-        // ½ºÅ×ÀÌÁö ±¸¼º
+        // 쩍쨘철 짹쨍쩌쨘
         DisplayStageLevelText();
         SetMonster();
-    }
-    public void MovingNextStage()
-    {
-        // ´ÙÀ½ ½ºÅ×ÀÌÁö·Î ÀÌµ¿
-        
+        bossMonsterAble = true;
     }
     private void DisplayStageLevelText()
     {
-        // ½ºÅ×ÀÌÁö¿¡ ¸Â´Â ÅØ½ºÆ®¸¦ Ç¥½Ã
+        // 쩍쨘철쩔징 쨍쨈 쩍쨘짰쨍짝 짜쩍
         stageLevelText.text = "STAGE "+stageDataTables[stageLevel].mainStageNumber.ToString() + "-" + stageDataTables[stageLevel].subStageNumber.ToString();
     }
 
     private void SetMonster()
     {
-        // ½ºÅ×ÀÌÁö¿¡ ¸Â´Â ¸ó½ºÅÍ¸¦ ¹èÄ¡ ÈÄ µ¥ÀÌÅÍ ¼¼ÆÃ
+        // 쩍쨘철쩔징 쨍쨈 쨍처쩍쨘쨍짝 쨔챔징  쨉짜 쩌쩌
         for (int i = 0; i < monsterGeneratePosition.Length; i++)
         {
             GameObject monster = Instantiate(stageDataTables[stageLevel].monsterPrefab[i], monsterGeneratePosition[i].GetChild(1).GetChild(i));
+            MonsterDataTable monsterData = monster.GetComponent<MonsterSettings>().monsterDataTable;
+            bossMonsterHP += monsterData.monsterHP;
+            bossMonsterDropResource += (monsterData.dropResorceAmount * 2);
         }
     }
 
     private void DeleteMonster()
     {
-        // ÇöÀç ½ºÅ×ÀÌÁöÀÇ ¸ó½ºÅÍ ÀüºÎ »èÁ¦
-        for (int i = 0; i < monsterGeneratePosition.Length; i++)
+        // 현재 스테이지의 몬스터 전부 삭제
+        for (int i = playerController.targerPosition; i < monsterGeneratePosition.Length; i++)
         {
-            GameObject monster = monsterGeneratePosition[i].GetChild(1).GetChild(i).gameObject;
-            Destroy(monster);
+            GameObject monster = monsterGeneratePosition[i].GetChild(1).GetChild(i).GetChild(0).gameObject;
+            if(monster!=null) Destroy(monster);
         }
     }
 
     public void EndBattleMode()
     {
-        PlayerController playerController = FindObjectOfType<PlayerController>();
+        // 몬스터 사냥 종료
         playerController.BattleModeEnd();
     }
+
+    public void TryBossStage()
+    {
+        // 보스사냥 시도
+        if (bossMonsterAble)
+        {
+            DeleteMonster();
+            GameObject bossMonster = Instantiate(stageDataTables[stageLevel].bossMonsterPrefab, monsterGeneratePosition[4].GetChild(1).GetChild(4));
+            playerController.BattleModeEnd();
+            playerController.BossBattleModeStart();
+        }
+    }
+
+    public void BossModeFailed()
+    {
+        // 보스사냥 실패 시 처리
+        BossMonsterController bossMonsterController = FindObjectOfType<BossMonsterController>();
+        Destroy(bossMonsterController.gameObject);
+        SetStage();
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        playerController.targerPosition = 0;
+        playerController.BattleModeStart();
+    }
+
+
+
 
 }
