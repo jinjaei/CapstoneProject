@@ -1,4 +1,4 @@
-癤using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -32,23 +32,21 @@ public class StageManager : MonoBehaviour
         }
     }
     private static bool applicationQuitting = false;
-    // 쩍짹챈
+
     private void Awake()
     {
         _instance = this;
-        // 쩍짹챈 쩍쨘쩍쨘
     }
     private void OnDestroy()
     {
         applicationQuitting = true;
-        // 쩍쨘쩍쨘 쨩챔짝
     }
     private PlayerController playerController;
     public Transform[] monsterGeneratePosition = new Transform[5]; // 몬스터 포지션
     public SpriteRenderer[] stageBackgroundMap; // 스테이지 맵 배경이미지
     public StageDataTable[] stageDataTables; // 스테이지 데이터테이블 변수
 
-    public MonsterSettings[] currentMonsterData = new MonsterSettings[5]; // 철챌 쨍처쩍쨘 쨉짜
+    public MonsterSettings[] currentMonsterData = new MonsterSettings[5];
 
     public bool bossMonsterAble = true; // 보스 몬스터 소환 가능상태
 
@@ -86,20 +84,17 @@ public class StageManager : MonoBehaviour
 
     public void SetStage()
     {
-        // 쩍쨘철 짹쨍쩌쨘
         DisplayStageLevelText();
         SetMonster();
         bossMonsterAble = true;
     }
     private void DisplayStageLevelText()
     {
-        // 쩍쨘철쩔징 쨍쨈 쩍쨘짰쨍짝 짜쩍
         stageLevelText.text = "STAGE "+stageDataTables[stageLevel].mainStageNumber.ToString() + "-" + stageDataTables[stageLevel].subStageNumber.ToString();
     }
 
     private void SetMonster()
     {
-        // 쩍쨘철쩔징 쨍쨈 쨍처쩍쨘쨍짝 쨔챔징  쨉짜 쩌쩌
         for (int i = 0; i < monsterGeneratePosition.Length; i++)
         {
             GameObject monster = Instantiate(stageDataTables[stageLevel].monsterPrefab[i], monsterGeneratePosition[i].GetChild(1).GetChild(i));
@@ -147,8 +142,4 @@ public class StageManager : MonoBehaviour
         playerController.targerPosition = 0;
         playerController.BattleModeStart();
     }
-
-
-
-
 }
