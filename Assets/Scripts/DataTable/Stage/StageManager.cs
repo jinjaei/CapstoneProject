@@ -1,4 +1,4 @@
-using System.Collections;
+ç™¤using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -32,37 +32,36 @@ public class StageManager : MonoBehaviour
         }
     }
     private static bool applicationQuitting = false;
-    // ½Ì±ÛÅæ
+    // ì©ÂŒì§¹Â›Â…ì±ˆ
     private void Awake()
     {
         _instance = this;
-        // ½Ì±ÛÅæ ÀÎ½ºÅÏ½º
+        // ì©ÂŒì§¹Â›Â…ì±ˆ Â€ì©ì¨˜Â…ì©ì¨˜
     }
     private void OnDestroy()
     {
         applicationQuitting = true;
-        // ÀÎ½ºÅÏ½º »èÁ¦
+        // Â€ì©ì¨˜Â…ì©ì¨˜ ì¨©ì±”Âì§
     }
     private PlayerController playerController;
-    public Transform[] monsterGeneratePosition = new Transform[5]; // ¸ó½ºÅÍ Æ÷Áö¼Ç
-    public SpriteRenderer[] stageBackgroundMap; // ½ºÅ×ÀÌÁö ¸Ê ¹è°æÀÌ¹ÌÁö
-    public StageDataTable[] stageDataTables; // ½ºÅ×ÀÌÁö µ¥ÀÌÅÍÅ×ÀÌºí º¯¼ö
+    public Transform[] monsterGeneratePosition = new Transform[5]; // ëª¬ìŠ¤í„° í¬ì§€ì…˜
+    public SpriteRenderer[] stageBackgroundMap; // ìŠ¤í…Œì´ì§€ ë§µ ë°°ê²½ì´ë¯¸ì§€
+    public StageDataTable[] stageDataTables; // ìŠ¤í…Œì´ì§€ ë°ì´í„°í…Œì´ë¸” ë³€ìˆ˜
 
-    public MonsterSettings[] currentMonsterData = new MonsterSettings[5]; // ÇöÀç ¸ó½ºÅÍÀÇ µ¥ÀÌÅÍ
+    public MonsterSettings[] currentMonsterData = new MonsterSettings[5]; // Â‡ì² Â€ì±Œ ì¨ì²˜ì©ì¨˜Â…ÂÂ€Â‡ ì¨‰ì§œÂ€ÂŒÂ…Â
 
-    public bool bossMonsterAble = true; // º¸½º ¸ó½ºÅÍ ¼ÒÈ¯ °¡´É»óÅÂ
+    public bool bossMonsterAble = true; // ë³´ìŠ¤ ëª¬ìŠ¤í„° ì†Œí™˜ ê°€ëŠ¥ìƒíƒœ
 
     [HideInInspector]
-    public int stageLevel = 0; // ½ºÅ×ÀÌÁö ·¹º§
+    public int stageLevel = 0; // ìŠ¤í…Œì´ì§€ ë ˆë²¨
     [HideInInspector]
-    public float bossMonsterHP = 0; // º¸½º ¸ó½ºÅÍ HP
+    public float bossMonsterHP = 0; // ë³´ìŠ¤ ëª¬ìŠ¤í„° HP
     [HideInInspector]
-    public float bossMonsterDropResource = 0; // º¸½º ¸ó½ºÅÍ HP
+    public float bossMonsterDropResource = 0; // ë³´ìŠ¤ ëª¬ìŠ¤í„° HP
 
 
 
-    //private int mapLevel = 0; // ¸Ê ·¹º§
-
+    //private int mapLevel = 0; // ë§µ ë ˆë²¨
 
     public TextMeshProUGUI stageLevelText;
     public Transform mainMap;
@@ -72,29 +71,35 @@ public class StageManager : MonoBehaviour
         playerController = FindObjectOfType<PlayerController>();
         for (int i = 0; i < monsterGeneratePosition.Length; i++)
         {
-            // monsterGeneratePosition¿¡ TransformÄÄÆ÷³ÍÆ® ÇÒ´ç
+            // monsterGeneratePositionì©”ì§• TransformÂ„Â„Â†ì²¨ì¨€ÂÂ†ì§° Â‡Â’ì¨ˆì±Œ
             monsterGeneratePosition[i] = GetComponent<Transform>();
         }
 
-        SetStage(); // ½ºÅ×ÀÌÁö ±¸¼º
+        BackendGameData.Instance.onGameDataLoadEvent.AddListener(OnGameDataLoad); // ç”±ÑŠÂŠã…»Â„Âˆ ç•°Â”åª›Â€
+        BackendGameData.Instance.GameDataLoad(); // Â’ã…»ÂÂ Â„Âœè¸°Â„Â—ÂÂ„Âœ å¯ƒÂŒÂÂ„ Âê³—ÂëŒ„Â„ æ¿¡ÂœÂ“Âœ
+    }
+
+    private void OnGameDataLoad()
+    {
+        SetStage();
     }
 
     public void SetStage()
     {
-        // ½ºÅ×ÀÌÁö ±¸¼º
+        // ì©ì¨˜Â…Â—Â€ÂŒÂì²  ì§¹ì¨ì©Œì¨˜
         DisplayStageLevelText();
         SetMonster();
         bossMonsterAble = true;
     }
     private void DisplayStageLevelText()
     {
-        // ½ºÅ×ÀÌÁö¿¡ ¸Â´Â ÅØ½ºÆ®¸¦ Ç¥½Ã
+        // ì©ì¨˜Â…Â—Â€ÂŒÂì² ì©”ì§• ì¨Â‚ì¨ˆÂ‚ Â…Â˜ì©ì¨˜Â†ì§°ì¨ì§ Â‡ì§œì©Âƒ
         stageLevelText.text = "STAGE "+stageDataTables[stageLevel].mainStageNumber.ToString() + "-" + stageDataTables[stageLevel].subStageNumber.ToString();
     }
 
     private void SetMonster()
     {
-        // ½ºÅ×ÀÌÁö¿¡ ¸Â´Â ¸ó½ºÅÍ¸¦ ¹èÄ¡ ÈÄ µ¥ÀÌÅÍ ¼¼ÆÃ
+        // ì©ì¨˜Â…Â—Â€ÂŒÂì² ì©”ì§• ì¨Â‚ì¨ˆÂ‚ ì¨ì²˜ì©ì¨˜Â…Âì¨ì§ ì¨”ì±”Â„ì§• ÂˆÂ„ ì¨‰ì§œÂ€ÂŒÂ…Â ì©Œì©ŒÂ†Âƒ
         for (int i = 0; i < monsterGeneratePosition.Length; i++)
         {
             GameObject monster = Instantiate(stageDataTables[stageLevel].monsterPrefab[i], monsterGeneratePosition[i].GetChild(1).GetChild(i));
@@ -106,7 +111,7 @@ public class StageManager : MonoBehaviour
 
     private void DeleteMonster()
     {
-        // ÇöÀç ½ºÅ×ÀÌÁöÀÇ ¸ó½ºÅÍ ÀüºÎ »èÁ¦
+        // í˜„ì¬ ìŠ¤í…Œì´ì§€ì˜ ëª¬ìŠ¤í„° ì „ë¶€ ì‚­ì œ
         for (int i = playerController.targerPosition; i < monsterGeneratePosition.Length; i++)
         {
             GameObject monster = monsterGeneratePosition[i].GetChild(1).GetChild(i).GetChild(0).gameObject;
@@ -116,13 +121,13 @@ public class StageManager : MonoBehaviour
 
     public void EndBattleMode()
     {
-        // ¸ó½ºÅÍ »ç³É Á¾·á
+        // ëª¬ìŠ¤í„° ì‚¬ëƒ¥ ì¢…ë£Œ
         playerController.BattleModeEnd();
     }
 
     public void TryBossStage()
     {
-        // º¸½º»ç³É ½Ãµµ
+        // ë³´ìŠ¤ì‚¬ëƒ¥ ì‹œë„
         if (bossMonsterAble)
         {
             DeleteMonster();
@@ -134,7 +139,7 @@ public class StageManager : MonoBehaviour
 
     public void BossModeFailed()
     {
-        // º¸½º»ç³É ½ÇÆĞ ½Ã Ã³¸®
+        // ë³´ìŠ¤ì‚¬ëƒ¥ ì‹¤íŒ¨ ì‹œ ì²˜ë¦¬
         BossMonsterController bossMonsterController = FindObjectOfType<BossMonsterController>();
         Destroy(bossMonsterController.gameObject);
         SetStage();

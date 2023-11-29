@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 660911240, guid: f624596d5fe1bd5459a5da424a8abc1b, type: 3}
   m_Name: TheBackendSettings
   m_EditorClassIdentifier: 
-  clientAppID: 2d39f740-84d8-11ee-a6dd-7f2bdf5093996186
-  signatureKey: 2d39f741-84d8-11ee-a6dd-7f2bdf5093996186
+  clientAppID: af58e320-8e75-11ee-bacf-e38881799bd56350
+  signatureKey: af58e321-8e75-11ee-bacf-e38881799bd56350
   functionAuthKey: 
   packageName: com.DefaultCompany.CapstoneProject
   isAllPlatform: 1

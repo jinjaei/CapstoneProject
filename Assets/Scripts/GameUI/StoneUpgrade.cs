@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,16 +7,16 @@ using UnityEngine.EventSystems;
 
 public class StoneUpgrade : MonoBehaviour
 {
-    public List<Button> upgradeButtons; // ¾÷±×·¹ÀÌµå ÇÒ ¹öÆ°
-    public List<Button> purchasedButtons; // ±¸¸ÅÇÑ ¹öÆ°
-    private Button currentButton; // ÇöÀç Àû¿ëÁßÀÎ ¹öÆ°
+    public List<Button> upgradeButtons; // Â¾Ã·Â±Ã—Â·Â¹Ã€ÃŒÂµÃ¥ Ã‡Ã’ Â¹Ã¶Ã†Â°
+    public List<Button> purchasedButtons; // Â±Â¸Â¸Ã…Ã‡Ã‘ Â¹Ã¶Ã†Â°
+    private Button currentButton; // Ã‡Ã¶Ã€Ã§ Ã€Ã»Â¿Ã«ÃÃŸÃ€Ã Â¹Ã¶Ã†Â°
 
-    public GameObject[] stonePrefab; // ½ºÅæ ÇÁ¸®ÆÕ
+    public GameObject[] stonePrefab; // Â½ÂºÃ…Ã¦ Ã‡ÃÂ¸Â®Ã†Ã•
 
-    public int[] upgradePrices; // ¾÷±×·¹ÀÌµå °¡°İ
-    private int currentUpgradeLevel = 0; // ÇöÀç ¾÷±×·¹ÀÌµå ·¹º§
+    public int[] upgradePrices; // Â¾Ã·Â±Ã—Â·Â¹Ã€ÃŒÂµÃ¥ Â°Â¡Â°Ã
+    private int currentUpgradeLevel = 0; // Ã‡Ã¶Ã€Ã§ Â¾Ã·Â±Ã—Â·Â¹Ã€ÃŒÂµÃ¥ Â·Â¹ÂºÂ§
 
-    public Transform player; // ÇÃ·¹ÀÌ¾î
+    public Transform player; // Ã‡ÃƒÂ·Â¹Ã€ÃŒÂ¾Ã®
 
     private void Start()
     {
@@ -25,41 +25,43 @@ public class StoneUpgrade : MonoBehaviour
 
     public void PurchaseButton()
     {
-        currentButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>(); // Áö±İ Å¬¸¯µÈ ¹öÆ° °¡Á®¿À±â
+        currentButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>(); // ÃÃ¶Â±Ã Ã…Â¬Â¸Â¯ÂµÃˆ Â¹Ã¶Ã†Â° Â°Â¡ÃÂ®Â¿Ã€Â±Ã¢
 
-        if ((upgradeButtons.Count > 0) && upgradeButtons.Contains(currentButton)) // ¿ÜÇüÀ» Ã³À½ ±¸¸ÅÇÒ ¶§¸¸ ½ÇÇà
+        if ((upgradeButtons.Count > 0) && upgradeButtons.Contains(currentButton)) // Â¿ÃœÃ‡Ã¼Ã€Â» ÃƒÂ³Ã€Â½ Â±Â¸Â¸Ã…Ã‡Ã’ Â¶Â§Â¸Â¸ Â½Ã‡Ã‡Ã 
         {
             ResourceManager.instance.CheckResourceAmount(ResourceManager.ResourceType.Diamond, upgradePrices[currentUpgradeLevel+1]);
             if (ResourceManager.instance.consumeAble)
             {
-                purchasedButtons.Add(upgradeButtons[0]); // ±¸¸ÅÇÑ ¹öÆ° ¸®½ºÆ®·Î ÀÌµ¿
+                purchasedButtons.Add(upgradeButtons[0]); // Â±Â¸Â¸Ã…Ã‡Ã‘ Â¹Ã¶Ã†Â° Â¸Â®Â½ÂºÃ†Â®Â·Ã Ã€ÃŒÂµÂ¿
                 ChangeStone();
 
-                ResourceManager.instance.RemoveResource(ResourceManager.ResourceType.Diamond, upgradePrices[currentUpgradeLevel]); // ÀÚ¿ø °¨¼Ò
+                ResourceManager.instance.RemoveResource(ResourceManager.ResourceType.Diamond, upgradePrices[currentUpgradeLevel]); // Ã€ÃšÂ¿Ã¸ Â°Â¨Â¼Ã’
                 TextMeshProUGUI upgradeText = upgradeButtons[0].GetComponentInChildren<TextMeshProUGUI>();
-                upgradeText.text = "Àû¿ëÁß"; // ÅØ½ºÆ® "Àû¿ëÁß" º¯È¯
-                upgradeText.rectTransform.anchoredPosition = new Vector3(upgradeText.rectTransform.anchoredPosition.x - 40, 0, 0); // ÅØ½ºÆ® °¡¿îµ¥·Î ¸ÂÃß±â
+                upgradeText.text = "Ã€Ã»Â¿Ã«ÃÃŸ"; // Ã…Ã˜Â½ÂºÃ†Â® "Ã€Ã»Â¿Ã«ÃÃŸ" ÂºÂ¯ÃˆÂ¯
+                upgradeText.rectTransform.anchoredPosition = new Vector3(upgradeText.rectTransform.anchoredPosition.x - 40, 0, 0); // Ã…Ã˜Â½ÂºÃ†Â® Â°Â¡Â¿Ã®ÂµÂ¥Â·Ã Â¸Ã‚ÃƒÃŸÂ±Ã¢
 
                 Image[] removeImages = upgradeText.GetComponentsInChildren<Image>();
-                removeImages[0].gameObject.SetActive(false); // ´ÙÀÌ¾Æ ÀÌ¹ÌÁö ºñÈ°¼ºÈ­
-                removeImages[1].gameObject.SetActive(false); // ½Ç·ç¿§ ÀÌ¹ÌÁö ºñÈ°¼ºÈ­
+                removeImages[0].gameObject.SetActive(false); // Â´Ã™Ã€ÃŒÂ¾Ã† Ã€ÃŒÂ¹ÃŒÃÃ¶ ÂºÃ±ÃˆÂ°Â¼ÂºÃˆÂ­
+                removeImages[1].gameObject.SetActive(false); // Â½Ã‡Â·Ã§Â¿Â§ Ã€ÃŒÂ¹ÃŒÃÃ¶ ÂºÃ±ÃˆÂ°Â¼ÂºÃˆÂ­
 
                 upgradeButtons.Remove(upgradeButtons[0]);
-                upgradePrices[currentUpgradeLevel] = 0; // ±¸¸ÅÇÑ ¿ÜÇü °¡°İÀº ¹«·á·Î º¯°æ
+                upgradePrices[currentUpgradeLevel] = 0; // Â±Â¸Â¸Ã…Ã‡Ã‘ Â¿ÃœÃ‡Ã¼ Â°Â¡Â°ÃÃ€Âº Â¹Â«Â·Ã¡Â·Ã ÂºÂ¯Â°Ã¦
 
                 if (upgradeButtons.Count != 0)
-                    upgradeButtons[0].interactable = true; // ´ÙÀ½ ¿ÜÇü ¹öÆ° È°¼ºÈ­
+                    upgradeButtons[0].interactable = true; // Â´Ã™Ã€Â½ Â¿ÃœÃ‡Ã¼ Â¹Ã¶Ã†Â° ÃˆÂ°Â¼ÂºÃˆÂ­
             }
             else
-                return; // ±¸¸Å ºÒ°¡¸é ÇÔ¼ö Á¾·á
+                return; // Â±Â¸Â¸Ã… ÂºÃ’Â°Â¡Â¸Ã© Ã‡Ã”Â¼Ã¶ ÃÂ¾Â·Ã¡
         }
-        else // ÀÌ¹Ì ±¸¸ÅÇÑ ¿ÜÇüÀÏ ¶§
+        else // Ã€ÃŒÂ¹ÃŒ Â±Â¸Â¸Ã…Ã‡Ã‘ Â¿ÃœÃ‡Ã¼Ã€Ã Â¶Â§
             ChangeStone();
 
         ChangeText();
         PlayerStoneUpgrade();
+        // ì™¸í˜• ì—…ê·¸ë ˆì´ë“œ ë ˆë²¨ì„ ì—…ë°ì´íŠ¸
+        BackendGameData.Instance.UserGameData.stoneUpgradeLevels[currentUpgradeLevel]++;
     }
-    public void ChangeStone() // º¯°æÇÒ ¿ÜÇü °áÁ¤
+    public void ChangeStone() // ÂºÂ¯Â°Ã¦Ã‡Ã’ Â¿ÃœÃ‡Ã¼ Â°Ã¡ÃÂ¤
     {
         switch (purchasedButtons.IndexOf(currentButton))
         {
@@ -89,20 +91,20 @@ public class StoneUpgrade : MonoBehaviour
         }
     }
 
-    public void ChangeText() // ±¸¸ÅµÈ ¹öÆ°ÀÇ ÅØ½ºÆ® º¯°æ
+    public void ChangeText() // Â±Â¸Â¸Ã…ÂµÃˆ Â¹Ã¶Ã†Â°Ã€Ã‡ Ã…Ã˜Â½ÂºÃ†Â® ÂºÂ¯Â°Ã¦
     {
         for (int i = 0; i < purchasedButtons.Count; i++)
         {
-            purchasedButtons[i].interactable = true; // Àû¿ëÁßÀÌ ¾Æ´Ñ ¹öÆ° ¸ğµÎ È°¼ºÈ­
-            purchasedButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Àû¿ë";
+            purchasedButtons[i].interactable = true; // Ã€Ã»Â¿Ã«ÃÃŸÃ€ÃŒ Â¾Ã†Â´Ã‘ Â¹Ã¶Ã†Â° Â¸Ã°ÂµÃ ÃˆÂ°Â¼ÂºÃˆÂ­
+            purchasedButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Ã€Ã»Â¿Ã«";
         }
-        currentButton.interactable = false; // Àû¿ëÁßÀÎ ¹öÆ°Àº ºñÈ°¼ºÈ­
-        currentButton.GetComponentInChildren<TextMeshProUGUI>().text = "Àû¿ëÁß";
+        currentButton.interactable = false; // Ã€Ã»Â¿Ã«ÃÃŸÃ€Ã Â¹Ã¶Ã†Â°Ã€Âº ÂºÃ±ÃˆÂ°Â¼ÂºÃˆÂ­
+        currentButton.GetComponentInChildren<TextMeshProUGUI>().text = "Ã€Ã»Â¿Ã«ÃÃŸ";
     }
 
     public void PlayerStoneUpgrade()
     {
-        // ½ºÅæ ¾÷±×·¹ÀÌµå
+        // Â½ÂºÃ…Ã¦ Â¾Ã·Â±Ã—Â·Â¹Ã€ÃŒÂµÃ¥
         int childCount = player.childCount;
         if (childCount > 0)
         {
@@ -118,7 +120,7 @@ public class StoneUpgrade : MonoBehaviour
         }
         else
         {
-            Debug.Log("ÀÚ½Ä ¿ÀºêÁ§Æ®°¡ ¾ø½À´Ï´Ù.");
+            Debug.Log("Ã€ÃšÂ½Ã„ Â¿Ã€ÂºÃªÃÂ§Ã†Â®Â°Â¡ Â¾Ã¸Â½Ã€Â´ÃÂ´Ã™.");
         }
     }
 
