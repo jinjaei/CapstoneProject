@@ -104,6 +104,7 @@ public class BackendGameData
                         gameDataRowInDate = gameDataJson[0]["inDate"].ToString();
                         //불러온 게임 정보를 userGameData 변수에 저장
                         userGameData.Stone = int.Parse(gameDataJson[0]["Stone"].ToString());
+                        userGameData.Diamond = int.Parse(gameDataJson[0]["Diamond"].ToString());
                         userGameData.Speed = double.Parse(gameDataJson[0]["Speed"].ToString());
                         userGameData.Power = int.Parse(gameDataJson[0]["Power"].ToString());
                         userGameData.SpeedLevel = int.Parse(gameDataJson[0]["SpeedLevel"].ToString());
