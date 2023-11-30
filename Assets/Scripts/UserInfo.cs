@@ -24,19 +24,19 @@ public class UserInfo : MonoBehaviour
                 {
                     JsonData json = callback.GetReturnValuetoJSON()["row"];
 
-                    // "gamerId" 키가 존재하는지 확인
-                    if (json.Keys.Contains("gamerId"))
-                    {
-                        // 존재하는 경우에만 값을 가져옴
-                        data.gamerId = json["gamerId"].ToString();
-                    }
-                    else
-                    {
-                        // 키가 존재하지 않는 경우 처리
-                        Debug.LogError("Key 'gamerId' not found in JSON data");
-                    }
+                    //// "gamerId" 키가 존재하는지 확인
+                    //if (json.Keys.Contains("gamerId"))
+                    //{
+                    //    // 존재하는 경우에만 값을 가져옴
+                    //    data.gamerId = json["gamerId"].ToString();
+                    //}
+                    //else
+                    //{
+                    //    // 키가 존재하지 않는 경우 처리
+                    //    Debug.LogError("Key 'gamerId' not found in JSON data");
+                    //}
 
-              
+                    data.gamerId = json["gamerId"].ToString();
                     data.inData = json["inData"].ToString();
                     data.subscriptionType = json["subscriptionType"].ToString();
                     data.federationId = json["federationId"].ToString();
