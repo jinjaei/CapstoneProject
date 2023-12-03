@@ -21,7 +21,7 @@ public class UserGameData
 	public void Reset()
 	{
 		Stone = "1.2G";
-		Diamond = "1000";
+		Diamond = "4500";
 		Power = 10f;
 		Speed = 3f;
 		SpeedLevel = 1;
