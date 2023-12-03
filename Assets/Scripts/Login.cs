@@ -15,25 +15,22 @@ public class Login : LoginBase
     private Image imagePW; //ID필드 색상 변경
     [SerializeField]
     private TMP_InputField inputFieldPW; //ID필드 텍스트 정보 추출
-
     [SerializeField]
     private Button btnLogin; //로그인 버튼(상호작용 가능/불가능)
 
     //"로그인"버튼을 눌렀을 때 호출
     public void OnClickLogin()
     {
-        //매개 변수로 입력한 InputField UI의 색상과 Message 내용 초기화
-        ResetUI(imageID, imagePW);
-
         //필드값이 비어있는 지 체크
         if (IsFieldDataEmpty(imageID, inputFieldID.text, "아이디")) return;
-        if (IsFieldDataEmpty(imagePW, inputFieldPW.text, "비밀번호  ")) return;
+        if (IsFieldDataEmpty(imagePW, inputFieldPW.text, "비밀번호")) return;
 
         //로그인 버튼을 연타하지 못하도록 상호작용 비활성화
         btnLogin.interactable = false;
 
         // 서버에 로그인을 요청하는 동안 화면에 출력하는 내용 업데이트
-        StartCoroutine(nameof(LoginProgress));
+        //StartCoroutine(nameof(LoginProgress));
+        ToastMessage.I.ShowToastMessage($"로그인 시도 중...", ToastMessage.ToastLength.Short);
 
         // 뒤끝 서버 로그인 시도
         ResponseToLogin(inputFieldID.text, inputFieldPW.text);
@@ -46,13 +43,12 @@ public class Login : LoginBase
         // 서버에 로그인 요청(비동기)
         Backend.BMember.CustomLogin(ID, PW, callback =>
         {
-            StopCoroutine(nameof(LoginProgress));
+            //StopCoroutine(nameof(LoginProgress));
 
             //로그인 성공
             if (callback.IsSuccess() )
             {
-                SetMesssage($"{inputFieldID.text}님 환영합니다.");
-
+                ToastMessage.I.ShowToastMessage($"{inputFieldID.text}님 환영합니다.", ToastMessage.ToastLength.Short);
                 SceneManager.LoadScene("GameScene");
             }
 
@@ -68,20 +64,18 @@ public class Login : LoginBase
                 {
                     case 401: //존재하지 않는 아이디. 잘못된 비밀번호
                         message = callback.GetMessage().Contains("customid") ? "존재하지않은 아이디입니다." : "잘못된 비밀번호입니다.";
+                        ToastMessage.I.ShowToastMessage(message, ToastMessage.ToastLength.Short);
                         break;
                     default:
                         message = callback.GetMessage();
+                        ToastMessage.I.ShowToastMessage(message, ToastMessage.ToastLength.Short);
                         break;
                 }
 
-                if ( message.Contains("비밀번호") )
-                {
-                    GuideForIncorrectlyEnteredData(imagePW, message);
-                }
+                if ( message.Contains("비밀번호"))
+                    GuideForIncorrectlyEnteredData(imagePW);
                 else
-                {
-                    GuideForIncorrectlyEnteredData(imageID, message);
-                }
+                    GuideForIncorrectlyEnteredData(imageID);
             }
         });
     }
@@ -94,7 +88,7 @@ public class Login : LoginBase
         {
             time += Time.deltaTime;
 
-            SetMesssage($"로그인 중입니다...{time:F1}");
+            //ToastMessage.I.ShowToastMessage($"로그인 중입니다...{time:F1}", ToastMessage.ToastLength.Short);
 
             yield return null;
         }

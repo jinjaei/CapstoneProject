@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class IntroManager : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class IntroManager : MonoBehaviour
 
     private void Update()
     {
-        if((Application.platform == RuntimePlatform.Android))
+        if ((Application.platform == RuntimePlatform.Android))
         {
             if (Input.touchCount > 0 && (TouchAble == true))
             {
@@ -42,6 +43,8 @@ public class IntroManager : MonoBehaviour
                 }
             }
         }
+        else if (Input.GetKey(KeyCode.Mouse0) && (TouchAble == true))
+            SignInWindow.gameObject.SetActive(true);
     }
 
     public IEnumerator FadeTextToFullAlpha(float time, Image image, TextMeshProUGUI text)
@@ -76,9 +79,10 @@ public class IntroManager : MonoBehaviour
         ButtonSFX.Play();
     }
 
-    public void SignUpSuccess()
+    public void UIReset() // inputFieldImage color reset
     {
-        ToastMessage.I.ShowToastMessage("회원가입 완료", ToastMessage.ToastLength.Short);
+        Image inputFieldImage = EventSystem.current.currentSelectedGameObject.GetComponent<Image>();
+        inputFieldImage.color = Color.white;
     }
 
     public void SignUpCancel()
@@ -89,16 +93,6 @@ public class IntroManager : MonoBehaviour
     public void SignUpButtonClick()
     {
         SignUpWindow.gameObject.SetActive(true);
-    }
-
-    public void SignInSuccess()
-    {
-        SceneManager.LoadScene("GameScene");
-    }
-
-    public void SignInFail()
-    {
-        ToastMessage.I.ShowToastMessage("아이디 또는 비밀번호가 틀렸습니다", ToastMessage.ToastLength.Short);
     }
 
     public void WindowExit()
