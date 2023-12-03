@@ -44,17 +44,15 @@ public class PlayerStatManager : MonoBehaviour
         applicationQuitting = true;
         // 인스턴스 삭제
     }
-
-    //public int playerLevel { get; set; }
+    private void Start()
+    {
+        StartCoroutine(SetValue());
+    }
     public float playerPower = 10;
     public float playerCoolDown = 3f;
     public int PowerLevel = 1; // 공격력 레벨
     public int CoolDownLevel = 1; // 공격속도 레벨
 
-    /*public void AddLevel(int amount)
-    {
-        playerLevel += amount;
-    }*/
 
     public void AddPower(float count)
     {
@@ -113,5 +111,17 @@ public class PlayerStatManager : MonoBehaviour
             statAmount = statAmount - (statAmount * 0.0005f);
         }
         return statAmount;
+    }
+    private IEnumerator SetValue()
+    {
+        yield return new WaitForSeconds(0.5f);
+        playerPower = BackendGameData.Instance.UserGameData.Power;
+        playerCoolDown = BackendGameData.Instance.UserGameData.Speed;
+        PowerLevel = BackendGameData.Instance.UserGameData.PowerLevel;
+        CoolDownLevel = BackendGameData.Instance.UserGameData.SpeedLevel;
+        GameUI gameUI = FindObjectOfType<GameUI>();
+        gameUI.SettingAPLevelText();
+        gameUI.SettingASLevelText();
+        // 능력치 시작 값 설정
     }
 }
