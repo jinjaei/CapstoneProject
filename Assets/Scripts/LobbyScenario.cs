@@ -8,10 +8,11 @@ public class LobbyScenario : MonoBehaviour
     private void Awake()
     {
         user.GetUserInfoFromBackend();
+        BackendGameData.Instance.GameDataLoad();
     }
 
     private void Start()
     {
-        BackendGameData.Instance.GameDataLoad();
+        
     }
 }

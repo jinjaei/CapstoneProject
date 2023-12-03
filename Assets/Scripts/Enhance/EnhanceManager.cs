@@ -46,6 +46,10 @@ public class EnhanceManager : MonoBehaviour
         applicationQuitting = true;
         // 인스턴스 삭제
     }
+    private void Start()
+    {
+        StartCoroutine(SetValue());
+    }
     [HideInInspector] public InfVal powerResourceAmount = 100; //감소시킬 자원의 양 (파워)
     [HideInInspector] public InfVal cooldownResourceAmount = 100; //감소시킬 자원의 양 (공격속도)
     [HideInInspector] public int upgradeCount = 1; //업그레이드횟수  
@@ -120,6 +124,17 @@ public class EnhanceManager : MonoBehaviour
             increaseAmount = increaseAmount + (increaseAmount * 0.01);
         }
         return increaseAmount;
+    }
+
+    private IEnumerator SetValue()
+    {
+        yield return new WaitForSeconds(0.5f);
+        powerResourceAmount = InfVal.Parse(BackendGameData.Instance.UserGameData.PRA);
+        cooldownResourceAmount = InfVal.Parse(BackendGameData.Instance.UserGameData.SPA);
+        GameUI gameUI = FindObjectOfType<GameUI>();
+        gameUI.SettingAPUpgradeText();
+        gameUI.SettingASUpgradeText();
+        // 자원 시작 값 설정
     }
 
 }

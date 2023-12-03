@@ -72,8 +72,7 @@ public class StageManager : MonoBehaviour
             // monsterGeneratePosition쩔징 Transform첨쨀짰 쨈챌
             monsterGeneratePosition[i] = GetComponent<Transform>();
         }
-
-        SetStage();
+        StartCoroutine(SetValue());
     }
 
     public void SetStage()
@@ -135,5 +134,12 @@ public class StageManager : MonoBehaviour
         PlayerController playerController = FindObjectOfType<PlayerController>();
         playerController.targerPosition = 0;
         playerController.BattleModeStart();
+    }
+    private IEnumerator SetValue()
+    {
+        yield return new WaitForSeconds(0.5f);
+        stageLevel = BackendGameData.Instance.UserGameData.StageLevel;
+        SetStage();
+        // 스테이지 설정
     }
 }

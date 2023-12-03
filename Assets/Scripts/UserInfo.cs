@@ -37,9 +37,9 @@ public class UserInfo : MonoBehaviour
                     //}
 
                     data.gamerId = json["gamerId"].ToString();
-                    data.inData = json["inData"].ToString();
+                    data.inData = json["inDate"].ToString();
                     data.subscriptionType = json["subscriptionType"].ToString();
-                    data.federationId = json["federationId"].ToString();
+                    //data.federationId = json["federationId"].ToString();
                 }
 
                 //json 데이터 파싱 실패
@@ -78,6 +78,6 @@ public class UserInfoData
         gamerId = "Offline";
         inData = string.Empty;
         subscriptionType = string.Empty;
-        federationId = string.Empty;
+        //federationId = string.Empty;
     }
 }

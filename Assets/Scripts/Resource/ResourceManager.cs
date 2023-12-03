@@ -43,8 +43,8 @@ public class ResourceManager : MonoBehaviour
     [SerializeField]
     private InfVal currentDiamond; // 현재 다이아 값
 
-    private InfVal startStone = 0; // 시작 골드 값
-    private InfVal startDiamond = 0; // 시작 다이아 값
+    private string startStone = "0"; // 시작 골드 값
+    private string startDiamond = "0"; // 시작 다이아 값
 
     public bool consumeAble = false;
 
@@ -61,11 +61,11 @@ public class ResourceManager : MonoBehaviour
         _instance = this;
         // 싱글톤 인스턴스
 
-        startStone = InfVal.Parse("9999M");
-        startDiamond = 9999;
-        currentStone = startStone;
-        currentDiamond = startDiamond;
-        // 자원 시작 값 설정
+
+    }
+    private void Start()
+    {
+        StartCoroutine(SetValue());
     }
 
     private void OnDestroy()
@@ -167,12 +167,12 @@ public class ResourceManager : MonoBehaviour
                 {
                     consumeAble = true;
                 }
-                else 
+                else
                 {
                     consumeAble = false;
                     ToastMessage.I.ShowToastMessage("스톤이 부족합니다!", ToastMessage.ToastLength.Short);
                     Debug.Log($"{resourceType}이 부족합니다.");
-                } 
+                }
                 break;
 
             case ResourceType.Diamond:
@@ -206,6 +206,16 @@ public class ResourceManager : MonoBehaviour
         }
 
         OnResourceChanged?.Invoke(resourceType, endValue);
+    }
+
+    private IEnumerator SetValue()
+    {
+        yield return new WaitForSeconds(0.5f);
+        startStone = BackendGameData.Instance.UserGameData.Stone;
+        startDiamond = BackendGameData.Instance.UserGameData.Diamond;
+        currentStone = InfVal.Parse(startStone);
+        currentDiamond = InfVal.Parse(startDiamond);
+        // 자원 시작 값 설정
     }
 }
 

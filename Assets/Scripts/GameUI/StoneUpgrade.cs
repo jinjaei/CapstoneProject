@@ -7,20 +7,56 @@ using UnityEngine.EventSystems;
 
 public class StoneUpgrade : MonoBehaviour
 {
-    public List<Button> upgradeButtons; // ¾÷±×·¹ÀÌµå ÇÒ ¹öÆ°
-    public List<Button> purchasedButtons; // ±¸¸ÅÇÑ ¹öÆ°
-    private Button currentButton; // ÇöÀç Àû¿ëÁßÀÎ ¹öÆ°
+    public List<Button> upgradeButtons; 
+    public List<Button> purchasedButtons; 
+    private Button currentButton; 
 
-    public GameObject[] stonePrefab; // ½ºÅæ ÇÁ¸®ÆÕ
+    public GameObject[] stonePrefab; 
 
-    public int[] upgradePrices; // ¾÷±×·¹ÀÌµå °¡°Ý
-    private int currentUpgradeLevel = 0; // ÇöÀç ¾÷±×·¹ÀÌµå ·¹º§
+    public int[] upgradePrices; 
+    public int currentUpgradeLevel = 0; 
 
-    public Transform player; // ÇÃ·¹ÀÌ¾î
+    public Transform player; 
+    private static object _lock = new object();
+    private static StoneUpgrade _instance = null;
+    public static StoneUpgrade instance
+    {
+        get
+        {
+            if (applicationQuitting)
+            {
+                return null;
+            }
+            lock (_lock)
+            {
+                if (_instance == null)
+                {
+                    GameObject obj = new GameObject("StoneUpgrade");
+                    obj.AddComponent<StoneUpgrade>();
+                    _instance = obj.GetComponent<StoneUpgrade>();
+                }
+                return _instance;
+            }
+        }
+        set
+        {
+            _instance = value;
+        }
+    }
+    private static bool applicationQuitting = false;
 
+    private void Awake()
+    {
+        _instance = this;
+    }
+    private void OnDestroy()
+    {
+        applicationQuitting = true;
+    }
     private void Start()
     {
         upgradeButtons[0].interactable = true;
+        StartCoroutine(SetValue());
     }
 
     public void PurchaseButton()
@@ -56,10 +92,9 @@ public class StoneUpgrade : MonoBehaviour
         else // ÀÌ¹Ì ±¸¸ÅÇÑ ¿ÜÇüÀÏ ¶§
             ChangeStone();
 
-        ChangeText();
+        ChangeText(purchasedButtons.Count);
         PlayerStoneUpgrade();
         // 외형 업그레이드 레벨을 업데이트
-        BackendGameData.Instance.UserGameData.stoneUpgradeLevels[currentUpgradeLevel]++;
     }
     public void ChangeStone() // º¯°æÇÒ ¿ÜÇü °áÁ¤
     {
@@ -91,15 +126,25 @@ public class StoneUpgrade : MonoBehaviour
         }
     }
 
-    public void ChangeText() // ±¸¸ÅµÈ ¹öÆ°ÀÇ ÅØ½ºÆ® º¯°æ
+    public void ChangeText(int count) // ±¸¸ÅµÈ ¹öÆ°ÀÇ ÅØ½ºÆ® º¯°æ
     {
-        for (int i = 0; i < purchasedButtons.Count; i++)
+        for (int i = 0; i < count; i++)
         {
             purchasedButtons[i].interactable = true; // Àû¿ëÁßÀÌ ¾Æ´Ñ ¹öÆ° ¸ðµÎ È°¼ºÈ­
-            purchasedButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Àû¿ë";
+            purchasedButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "적용";
         }
-        currentButton.interactable = false; // Àû¿ëÁßÀÎ ¹öÆ°Àº ºñÈ°¼ºÈ­
-        currentButton.GetComponentInChildren<TextMeshProUGUI>().text = "Àû¿ëÁß";
+        if (currentButton != null)
+        {
+            currentButton.interactable = false; // Àû¿ëÁßÀÎ ¹öÆ°Àº ºñÈ°¼ºÈ­
+            currentButton.GetComponentInChildren<TextMeshProUGUI>().text = "적용중";
+
+        }
+        else
+        {
+            purchasedButtons[count - 1].interactable = false;
+            upgradeButtons[0].interactable = true;
+            purchasedButtons[count-1].GetComponentInChildren<TextMeshProUGUI>().text = "적용중";
+        }
     }
 
     public void PlayerStoneUpgrade()
@@ -122,6 +167,39 @@ public class StoneUpgrade : MonoBehaviour
         {
             Debug.Log("ÀÚ½Ä ¿ÀºêÁ§Æ®°¡ ¾ø½À´Ï´Ù.");
         }
+    }
+    private void SetPurchasedButtons(int count)
+    {
+        if (count == 1) return;
+        for(int i=0; i<count-1; i++)
+        {
+            purchasedButtons.Add(upgradeButtons[i]);
+
+        }
+        for (int i = 0; i < count-1; i++)
+        {
+            upgradeButtons.Remove(upgradeButtons[0]);
+        }
+        for (int i = 1; i < count; i++)
+        {
+            TextMeshProUGUI upgradeText = purchasedButtons[i].GetComponentInChildren<TextMeshProUGUI>();
+            upgradeText.rectTransform.anchoredPosition = new Vector3(upgradeText.rectTransform.anchoredPosition.x - 40, 0, 0);
+
+            Image[] removeImages = upgradeText.GetComponentsInChildren<Image>();
+            removeImages[0].gameObject.SetActive(false);
+            removeImages[1].gameObject.SetActive(false);
+        }
+        
+        ChangeText(count);
+    }
+    private IEnumerator SetValue()
+    {
+        yield return new WaitForSeconds(0.3f);
+        currentUpgradeLevel = BackendGameData.Instance.UserGameData.PlayerLevel;
+        int count = BackendGameData.Instance.UserGameData.CurrentPlayerUpgrade;
+        SetPurchasedButtons(count);
+        PlayerStoneUpgrade();
+        // 외형 설정
     }
 
 

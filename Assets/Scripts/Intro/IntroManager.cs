@@ -29,7 +29,7 @@ public class IntroManager : MonoBehaviour
 
     private void Update()
     {
-        if((Application.platform == RuntimePlatform.Android))
+        if ((Application.platform == RuntimePlatform.Android))
         {
             if (Input.touchCount > 0 && (TouchAble == true))
             {
