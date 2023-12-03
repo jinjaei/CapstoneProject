@@ -59,7 +59,7 @@ public class PlayerStatManager : MonoBehaviour
         // 공격력 업그레이드
         for(int i=0; i < count; i++)
         {
-            playerPower += playerPower * 0.001f;
+            playerPower += playerPower * 0.002f;
 
         }
     }
