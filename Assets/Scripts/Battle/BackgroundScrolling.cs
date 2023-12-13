@@ -15,8 +15,8 @@ public class BackgroundScrolling : MonoBehaviour
     {
         // 두 개의 배경을 생성하고 배열에 저장
         backgrounds = new Transform[2];
-        backgrounds[0] = Instantiate(backgroundPrefab, new Vector3(0, 2, 2), Quaternion.identity).transform;
-        backgrounds[1] = Instantiate(backgroundPrefab, new Vector3(backgroundPrefab.GetComponent<SpriteRenderer>().bounds.size.x, 2, 2), Quaternion.identity).transform;
+        backgrounds[0] = Instantiate(backgroundPrefab, new Vector3(0, 2.16f, 2), Quaternion.identity).transform;
+        backgrounds[1] = Instantiate(backgroundPrefab, new Vector3(backgroundPrefab.GetComponent<SpriteRenderer>().bounds.size.x, 2.16f, 2), Quaternion.identity).transform;
     }
 
     // 스테이지 변경 이벤트가 발생할 때 호출될 메서드

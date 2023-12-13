@@ -1,8 +1,12 @@
 using UnityEngine;
 using BackEnd;
+using TMPro;
 
 public class BackEndManager : MonoBehaviour
 {
+    [SerializeField]
+    private TMP_InputField input;
+
     private void Awake()
     {
         // Update() 메소드의 Backend.AsyncPoll(); 호출을 위해
@@ -37,6 +41,19 @@ public class BackEndManager : MonoBehaviour
         {
             //초기화 실패시 문자
             Debug.LogError($"초기화 실패 : {bro}");
+        }
+    }
+
+    public void GetGoogleHash()
+    {
+        // 구글 해시키 획득 
+        string googlehash = Backend.Utils.GetGoogleHash();
+
+        if(!string.IsNullOrEmpty(googlehash))
+        {
+            Debug.Log("구글 해시 키 : " + googlehash);
+            if (input != null)
+                input.text = googlehash;
         }
     }
 }
