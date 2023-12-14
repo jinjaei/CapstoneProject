@@ -37,7 +37,7 @@ public class BackgroundScrolling : MonoBehaviour
 
                 if (backgrounds[i].position.x < -backgroundPrefab.GetComponent<SpriteRenderer>().bounds.size.x)
                 {
-                    backgrounds[i].position = new Vector3(backgroundPrefab.GetComponent<SpriteRenderer>().bounds.size.x, 2, 2);
+                    backgrounds[i].position = new Vector3(backgroundPrefab.GetComponent<SpriteRenderer>().bounds.size.x, 2.16f, 2);
 
                     playerController.MoveModeEnd();
                     GameUI gameUI=FindObjectOfType<GameUI>();
